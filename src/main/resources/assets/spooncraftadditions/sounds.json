@@ -1,0 +1,21 @@
+{
+  "music_disc.cactus_string_sand": { "sounds": ["spooncraftadditions:records/cactus_string_sand"]},
+  "music_disc.corridor": { "sounds": ["spooncraftadditions:records/corridor"]},
+  "music_disc.diabolical": { "sounds": ["spooncraftadditions:records/diabolical"]},
+  "music_disc.dibby_dibby_diamonds": { "sounds": ["spooncraftadditions:records/dibby_dibby_diamonds"]},
+  "music_disc.keralis_and_xisuma_no_no_no": { "sounds": ["spooncraftadditions:records/keralis_and_xisuma_no_no_no"]},
+  "music_disc.more_doors_for_me": { "sounds": ["spooncraftadditions:records/more_doors_for_me"]},
+  "music_disc.mumbo_afk": { "sounds": ["spooncraftadditions:records/mumbo_afk"]},
+  "music_disc.mumbo_no_no_no": { "sounds": ["spooncraftadditions:records/mumbo_no_no_no"]},
+  "music_disc.nether_wart": { "sounds": ["spooncraftadditions:records/nether_wart"]},
+  "music_disc.outro_time": { "sounds": ["spooncraftadditions:records/outro_time"]},
+  "music_disc.pickles": { "sounds": ["spooncraftadditions:records/pickles"]},
+  "music_disc.placing_slabs": { "sounds": ["spooncraftadditions:records/placing_slabs"]},
+  "music_disc.resource_gathering": { "sounds": ["spooncraftadditions:records/resource_gathering"]},
+  "music_disc.shift_click": { "sounds": ["spooncraftadditions:records/shift_click"]},
+  "music_disc.stupid": { "sounds": ["spooncraftadditions:records/stupid"]},
+  "music_disc.sugarcane": { "sounds": ["spooncraftadditions:records/sugarcane"]},
+  "music_disc.the_super_weapon": { "sounds": ["spooncraftadditions:records/the_super_weapon"]},
+  "music_disc.tiny_timelapse": { "sounds": ["spooncraftadditions:records/tiny_timelapse"]},
+  "music_disc.water_source": { "sounds": ["spooncraftadditions:records/water_source"]}
+}

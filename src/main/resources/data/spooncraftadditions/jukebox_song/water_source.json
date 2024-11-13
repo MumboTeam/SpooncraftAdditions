@@ -1,0 +1,10 @@
+{
+  "comparator_output": 1,
+  "description": {
+  "translate": "jukebox_song.spooncraftadditions.water_source"
+  },
+  "length_in_seconds": 94,
+  "sound_event": {
+    "sound_id": "spooncraftadditions:music_disc.water_source"
+  }
+}

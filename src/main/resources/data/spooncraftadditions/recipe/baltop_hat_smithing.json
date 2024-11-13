@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:netherite_ingot"
+  },
+  "base": {
+    "item": "spooncraftadditions:baltop_hat"
+  },
+  "result": {
+    "count": 1,
+    "id": "spooncraftadditions:netherite_baltop_hat"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "comparator_output": 1,
+  "description": {
+  "translate": "jukebox_song.spooncraftadditions.tiny_timelapse"
+  },
+  "length_in_seconds": 141,
+  "sound_event": {
+    "sound_id": "spooncraftadditions:music_disc.tiny_timelapse"
+  }
+}

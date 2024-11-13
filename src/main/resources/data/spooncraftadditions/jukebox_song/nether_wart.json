@@ -1,0 +1,10 @@
+{
+  "comparator_output": 1,
+  "description": {
+  "translate": "jukebox_song.spooncraftadditions.nether_wart"
+  },
+  "length_in_seconds": 105,
+  "sound_event": {
+    "sound_id": "spooncraftadditions:music_disc.nether_wart"
+  }
+}

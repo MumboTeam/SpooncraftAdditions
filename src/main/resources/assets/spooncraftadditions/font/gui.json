@@ -1,0 +1,66 @@
+{
+  "providers": [
+    {
+      "type": "space",
+      "advances": {
+        ".": -169,
+        "_": -98,
+        "-": -8
+      }
+    },
+    {
+      "type": "bitmap",
+      "file": "spooncraftadditions:gui/gift_box.png",
+      "ascent": 13,
+      "height": 256,
+      "chars": [
+        "1"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "spooncraftadditions:gui/gift_box_rewards.png",
+      "ascent": 13,
+      "height": 256,
+      "chars": [
+        "2"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "spooncraftadditions:gui/gift_box_claimed.png",
+      "ascent": 13,
+      "height": 256,
+      "chars": [
+        "3"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "spooncraftadditions:gui/gift_box_all.png",
+      "ascent": 13,
+      "height": 256,
+      "chars": [
+        "4"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "spooncraftadditions:gui/gift_box_rewards_empty.png",
+      "ascent": 13,
+      "height": 256,
+      "chars": [
+        "5"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "spooncraftadditions:gui/gift_box_claimed_empty.png",
+      "ascent": 13,
+      "height": 256,
+      "chars": [
+        "6"
+      ]
+    }
+  ]
+}

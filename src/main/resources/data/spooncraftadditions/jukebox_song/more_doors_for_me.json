@@ -1,0 +1,10 @@
+{
+  "comparator_output": 1,
+  "description": {
+  "translate": "jukebox_song.spooncraftadditions.more_doors_for_me"
+  },
+  "length_in_seconds": 102,
+  "sound_event": {
+    "sound_id": "spooncraftadditions:music_disc.more_doors_for_me"
+  }
+}

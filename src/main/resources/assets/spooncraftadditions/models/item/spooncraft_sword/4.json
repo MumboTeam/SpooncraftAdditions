@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "spooncraftadditions:item/spooncraft_sword/4"
+  }
+}

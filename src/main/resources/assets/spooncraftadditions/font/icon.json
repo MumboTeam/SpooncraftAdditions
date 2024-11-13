@@ -1,0 +1,46 @@
+{
+  "providers": [
+    {
+      "type": "space",
+      "advances": {
+        " ": 2
+      }
+    },
+    {
+      "type": "bitmap",
+      "file": "spooncraftadditions:font/role/admin.png",
+      "chars": [
+        "\ue110"
+      ],
+      "ascent": 7,
+      "height": 8
+    },
+    {
+      "type": "bitmap",
+      "file": "spooncraftadditions:font/role/mod.png",
+      "chars": [
+        "\ue111"
+      ],
+      "ascent": 7,
+      "height": 8
+    },
+    {
+      "type": "bitmap",
+      "file": "spooncraftadditions:font/role/helper.png",
+      "chars": [
+        "\ue112"
+      ],
+      "ascent": 7,
+      "height": 8
+    },
+    {
+      "type": "bitmap",
+      "file": "spooncraftadditions:font/role/event_staff.png",
+      "chars": [
+        "\ue113"
+      ],
+      "ascent": 7,
+      "height": 8
+    }
+  ]
+}

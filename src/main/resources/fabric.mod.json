@@ -1,0 +1,35 @@
+{
+	"schemaVersion": 1,
+	"id": "spooncraftadditions",
+	"version": "${version}",
+	"name": "Spooncraft Additions",
+	"description": "Custom content for Spooncraft, the official Minecraft server of the Mumbo Jumbo Discord",
+	"authors": [
+		"JoeGaming"
+	],
+	"contact": {
+		"homepage": "https://mumboteam.github.io/spooncraft-docs/",
+		"sources": "https://github.com/MumboTeam/SpooncraftAdditions",
+		"issues": "https://github.com/MumboTeam/SpooncraftAdditions/issues",
+		"discord": "https://discord.gg/yPafK59A8b"
+	},
+	"license": "LGPLv3",
+	"icon": "assets/spooncraftadditions/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"io.github.mumboteam.spooncraftadditions.SpooncraftAdditions"
+		]
+	},
+	"mixins": [
+		"spooncraftadditions.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*",
+		"polymer-core": ">=0.7.0",
+		"polymer-resource-pack": ">=0.7.0"
+	}
+}

@@ -1,0 +1,10 @@
+{
+  "comparator_output": 1,
+  "description": {
+  "translate": "jukebox_song.spooncraftadditions.mumbo_no_no_no"
+  },
+  "length_in_seconds": 92,
+  "sound_event": {
+    "sound_id": "spooncraftadditions:music_disc.mumbo_no_no_no"
+  }
+}

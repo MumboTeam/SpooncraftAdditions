@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "io.github.mumboteam.spooncraftadditions.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+      "SlimeMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

@@ -1,0 +1,10 @@
+{
+  "comparator_output": 1,
+  "description": {
+  "translate": "jukebox_song.spooncraftadditions.sugarcane"
+  },
+  "length_in_seconds": 89,
+  "sound_event": {
+    "sound_id": "spooncraftadditions:music_disc.sugarcane"
+  }
+}

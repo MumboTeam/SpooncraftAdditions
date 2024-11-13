@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "spooncraftadditions:item/music_disc_cactus_string_sand"
+    }
+}

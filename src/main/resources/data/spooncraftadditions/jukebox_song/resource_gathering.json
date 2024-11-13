@@ -1,0 +1,10 @@
+{
+  "comparator_output": 1,
+  "description": {
+  "translate": "jukebox_song.spooncraftadditions.resource_gathering"
+  },
+  "length_in_seconds": 98,
+  "sound_event": {
+    "sound_id": "spooncraftadditions:music_disc.resource_gathering"
+  }
+}
