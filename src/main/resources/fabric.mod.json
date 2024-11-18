@@ -26,10 +26,10 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.15.11",
-		"minecraft": "~1.21.1",
+		"minecraft": "~1.21.3",
 		"java": ">=21",
 		"fabric-api": "*",
-		"polymer-core": ">=0.7.0",
-		"polymer-resource-pack": ">=0.7.0"
+		"polymer-core": ">=0.10.0",
+		"polymer-resource-pack": ">=0.10.0"
 	}
 }

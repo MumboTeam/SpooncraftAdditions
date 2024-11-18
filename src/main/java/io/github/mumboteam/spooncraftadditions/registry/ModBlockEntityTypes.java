@@ -3,6 +3,7 @@ package io.github.mumboteam.spooncraftadditions.registry;
 import eu.pb4.polymer.core.api.block.PolymerBlockUtils;
 import io.github.mumboteam.spooncraftadditions.SpooncraftAdditions;
 import io.github.mumboteam.spooncraftadditions.block.entity.GiftBoxBlockEntity;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -11,7 +12,7 @@ import net.minecraft.util.Identifier;
 public class ModBlockEntityTypes {
     public static final BlockEntityType<GiftBoxBlockEntity> GIFT_BOX = register(
             "gift_box",
-            BlockEntityType.Builder.create(GiftBoxBlockEntity::new, ModBlocks.GIFT_BOX).build()
+            FabricBlockEntityTypeBuilder.create(GiftBoxBlockEntity::new, ModBlocks.GIFT_BOX).build()
     );
 
     public static <T extends BlockEntityType<?>> T register(String path, T blockEntityType) {

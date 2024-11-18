@@ -25,6 +25,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationPropertyHelper;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import xyz.nucleoid.packettweaker.PacketContext;
 
 public class GiftBoxBlock extends BlockWithEntity implements PolymerHeadBlock {
     public GiftBoxBlock(Settings settings) {
@@ -46,7 +47,7 @@ public class GiftBoxBlock extends BlockWithEntity implements PolymerHeadBlock {
     }
 
     @Override
-    public String getPolymerSkinValue(BlockState state, BlockPos pos, ServerPlayerEntity player) {
+    public String getPolymerSkinValue(BlockState state, BlockPos pos, PacketContext context) {
         return "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGU0ZWJlZmVmYThjYjNjNTg2MGFjODQxMjY1OWUxMjNiYTE1NGQ0YjcwOTZjM2IxMjNjMGQxZmNhNjNjOTc5OSJ9fX0=";
     }
 
@@ -61,7 +62,7 @@ public class GiftBoxBlock extends BlockWithEntity implements PolymerHeadBlock {
     }
 
     @Override
-    public BlockState getPolymerBlockState(BlockState state) {
+    public BlockState getPolymerBlockState(BlockState state, PacketContext context) {
         return Blocks.PLAYER_HEAD.getDefaultState().with(Properties.ROTATION, state.get(Properties.ROTATION));
     }
 
