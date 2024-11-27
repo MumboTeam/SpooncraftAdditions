@@ -1,6 +1,11 @@
 {
   "replace": false,
   "values": [
-    "spooncraftadditions:skyblock_hat"
+    "spooncraftadditions:skyblock_hat",
+    "spooncraftadditions:skyblock_starter_base_hat",
+    "spooncraftadditions:arrow_hat",
+    "spooncraftadditions:baltop_hat",
+    "spooncraftadditions:deep_void_sanctuary_hat",
+    "spooncraftadditions:duck_hat"
   ]
 }

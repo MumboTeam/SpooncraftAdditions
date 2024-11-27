@@ -8,6 +8,7 @@ import io.github.mumboteam.spooncraftadditions.component.ModComponents;
 import io.github.mumboteam.spooncraftadditions.loot.ModLootTables;
 import io.github.mumboteam.spooncraftadditions.registry.ModBlockEntityTypes;
 import io.github.mumboteam.spooncraftadditions.registry.ModBlocks;
+import io.github.mumboteam.spooncraftadditions.registry.ModEntityTypes;
 import io.github.mumboteam.spooncraftadditions.registry.ModItems;
 import io.github.mumboteam.spooncraftadditions.reward.Rewards;
 import net.fabricmc.api.ModInitializer;
@@ -30,6 +31,7 @@ public class SpooncraftAdditions implements ModInitializer {
         ModItems.initialize();
         ModBlocks.initialize();
         ModBlockEntityTypes.initialize();
+        ModEntityTypes.initialize();
         ModComponents.initialize();
         ModLootTables.initialize();
         PolymerResourcePackUtils.addModAssets(ID);

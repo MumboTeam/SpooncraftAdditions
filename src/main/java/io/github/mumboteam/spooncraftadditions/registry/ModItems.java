@@ -25,22 +25,24 @@ public class ModItems {
     private ModItems() {
     }
 
-    public static final Item SPOONCRAFT_SPOON = register("spooncraft_spoon", (settings) -> new SpooncraftSpoon(settings));
-    public static final Item SPOONCRAFT_SWORD = register("spooncraft_sword", (settings) -> new SpooncraftSword(settings));
-    public static final Item SLIME_BUCKET = register("slime_bucket", (settings) -> new SlimeBucket(settings));
+    public static final Item SPOONCRAFT_SPOON = register("spooncraft_spoon", SpooncraftSpoon::new);
+    public static final Item SPOONCRAFT_SWORD = register("spooncraft_sword", SpooncraftSword::new);
+    public static final Item SLIME_BUCKET = register("slime_bucket", SlimeBucket::new);
 
     public static final Item GIFT_BOX = register("gift_box", (settings) -> new PolymerHeadBlockItem((Block & PolymerHeadBlock) ModBlocks.GIFT_BOX, settings));
 
     public static final Item SKYBLOCK_HAT = register("skyblock_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "skyblock_hat", ArmorMaterials.DIAMOND));
     public static final Item NETHERITE_SKYBLOCK_HAT = register("netherite_skyblock_hat", (settings) -> new Hat(settings.fireproof().rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "skyblock_hat", ArmorMaterials.NETHERITE));
-    public static final Item BALTOP_HAT = register("baltop_hat", (settings) -> new Hat(settings.rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "baltop_hat", ArmorMaterials.DIAMOND));
+    public static final Item BALTOP_HAT = register("baltop_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "baltop_hat", ArmorMaterials.DIAMOND));
     public static final Item NETHERITE_BALTOP_HAT = register("netherite_baltop_hat", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "baltop_hat", ArmorMaterials.NETHERITE));
-    public static final Item ARROW_HAT = register("arrow_hat", (settings) -> new Hat(settings.rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "arrow_hat", ArmorMaterials.DIAMOND));
+    public static final Item ARROW_HAT = register("arrow_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "arrow_hat", ArmorMaterials.DIAMOND));
     public static final Item NETHERITE_ARROW_HAT = register("netherite_arrow_hat", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "arrow_hat", ArmorMaterials.NETHERITE));
-    public static final Item SKYBLOCK_STARTER_BASE_HAT = register("skyblock_starter_base_hat", (settings) -> new Hat(settings.rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "skyblock_starter_base_hat", ArmorMaterials.DIAMOND));
+    public static final Item SKYBLOCK_STARTER_BASE_HAT = register("skyblock_starter_base_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "skyblock_starter_base_hat", ArmorMaterials.DIAMOND));
     public static final Item NETHERITE_SKYBLOCK_STARTER_BASE_HAT = register("netherite_skyblock_starter_base_hat", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "skyblock_starter_base_hat", ArmorMaterials.NETHERITE));
-    public static final Item DEEP_VOID_SANCTUARY_HAT = register("deep_void_sanctuary_hat", (settings) -> new Hat(settings.rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "deep_void_sanctuary_hat", ArmorMaterials.DIAMOND));
+    public static final Item DEEP_VOID_SANCTUARY_HAT = register("deep_void_sanctuary_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "deep_void_sanctuary_hat", ArmorMaterials.DIAMOND));
     public static final Item NETHERITE_DEEP_VOID_SANCTUARY_HAT = register("netherite_deep_void_sanctuary_hat", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "deep_void_sanctuary_hat", ArmorMaterials.NETHERITE));
+    public static final Item DUCK_HAT = register("duck_hat", (settings) -> new DuckHat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), ArmorMaterials.DIAMOND, ModEntityTypes.DUCK));
+    public static final Item NETHERITE_DUCK_HAT = register("netherite_duck_hat", (settings) -> new DuckHat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), ArmorMaterials.NETHERITE, ModEntityTypes.NETHERITE_DUCK));
 
     public static final Item MUSIC_DISC_CACTUS_STRING_SAND = register("music_disc_cactus_string_sand", (settings) -> new MusicDisc(settings, "cactus_string_sand", ModJukeboxSongs.CACTUS_STRING_SAND));
     public static final Item MUSIC_DISC_CORRIDOR = register("music_disc_corridor", (settings) -> new MusicDisc(settings, "corridor", ModJukeboxSongs.CORRIDOR));
@@ -86,6 +88,7 @@ public class ModItems {
                     entries.add(ARROW_HAT);
                     entries.add(SKYBLOCK_STARTER_BASE_HAT);
                     entries.add(DEEP_VOID_SANCTUARY_HAT);
+                    entries.add(DUCK_HAT);
                     entries.add(GIFT_BOX);
                     entries.add(MUSIC_DISC_CACTUS_STRING_SAND);
                     entries.add(MUSIC_DISC_CORRIDOR);
