@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:paper",
+    "minecraft:orange_dye"
+  ],
+  "result": {
+    "id": "spooncraftadditions:claim_checker",
+    "count": 1
+  }
+}

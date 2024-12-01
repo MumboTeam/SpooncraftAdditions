@@ -3,6 +3,7 @@ package io.github.mumboteam.spooncraftadditions.registry;
 import eu.pb4.polymer.core.api.block.PolymerHeadBlock;
 import eu.pb4.polymer.core.api.item.PolymerHeadBlockItem;
 import eu.pb4.polymer.core.api.item.PolymerItemGroupUtils;
+import eu.pb4.polymer.core.api.item.SimplePolymerItem;
 import eu.pb4.polymer.resourcepack.api.PolymerResourcePackUtils;
 import io.github.mumboteam.spooncraftadditions.SpooncraftAdditions;
 import io.github.mumboteam.spooncraftadditions.item.*;
@@ -30,6 +31,9 @@ public class ModItems {
     public static final Item SLIME_BUCKET = register("slime_bucket", SlimeBucket::new);
 
     public static final Item GIFT_BOX = register("gift_box", (settings) -> new PolymerHeadBlockItem((Block & PolymerHeadBlock) ModBlocks.GIFT_BOX, settings));
+
+    public static final Item CLAIM_SCROLL = register("claim_scroll", (settings -> new SimplePolymerItem(settings, Items.PAPER, true)));
+    public static final Item CLAIM_CHECKER = register("claim_checker", (settings -> new SimplePolymerItem(settings, Items.PAPER, true)));
 
     public static final Item SKYBLOCK_HAT = register("skyblock_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "skyblock_hat", ArmorMaterials.DIAMOND));
     public static final Item NETHERITE_SKYBLOCK_HAT = register("netherite_skyblock_hat", (settings) -> new Hat(settings.fireproof().rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "skyblock_hat", ArmorMaterials.NETHERITE));
@@ -90,6 +94,8 @@ public class ModItems {
                     entries.add(DEEP_VOID_SANCTUARY_HAT);
                     entries.add(DUCK_HAT);
                     entries.add(GIFT_BOX);
+                    entries.add(CLAIM_SCROLL);
+                    entries.add(CLAIM_CHECKER);
                     entries.add(MUSIC_DISC_CACTUS_STRING_SAND);
                     entries.add(MUSIC_DISC_CORRIDOR);
                     entries.add(MUSIC_DISC_DIABOLICAL);
