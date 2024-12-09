@@ -1,7 +1,6 @@
 package io.github.mumboteam.spooncraftadditions.item;
 
 import eu.pb4.polymer.core.api.item.PolymerItem;
-import eu.pb4.polymer.resourcepack.api.PolymerResourcePackUtils;
 import io.github.mumboteam.spooncraftadditions.SpooncraftAdditions;
 import io.github.mumboteam.spooncraftadditions.component.ModComponents;
 import net.minecraft.component.DataComponentTypes;
@@ -27,17 +26,8 @@ import org.jetbrains.annotations.Nullable;
 import xyz.nucleoid.packettweaker.PacketContext;
 
 public class SlimeBucket extends Item implements PolymerItem {
-    private final Identifier cmd;
-    private final Identifier cmd_jumping;
-    private final Identifier cmd_gareth;
-    private final Identifier cmd_gareth_jumping;
-
     public SlimeBucket(Settings settings) {
         super(settings.maxCount(1).component(ModComponents.SLIME_EXCITED, false));
-        this.cmd = PolymerResourcePackUtils.getBridgedModelId(Identifier.of(SpooncraftAdditions.ID, "item/slime_bucket"));
-        this.cmd_jumping = PolymerResourcePackUtils.getBridgedModelId(Identifier.of(SpooncraftAdditions.ID, "item/slime_bucket_jumping"));
-        this.cmd_gareth = PolymerResourcePackUtils.getBridgedModelId(Identifier.of(SpooncraftAdditions.ID, "item/gareth_bucket"));
-        this.cmd_gareth_jumping = PolymerResourcePackUtils.getBridgedModelId(Identifier.of(SpooncraftAdditions.ID, "item/gareth_bucket_jumping"));
     }
 
     @Override
@@ -60,15 +50,15 @@ public class SlimeBucket extends Item implements PolymerItem {
     public @Nullable Identifier getPolymerItemModel(ItemStack stack, PacketContext context) {
         if (stack.getName().getString().toLowerCase().contains("gareth")) {
             if (Boolean.TRUE.equals(stack.get(ModComponents.SLIME_EXCITED))) {
-                return this.cmd_gareth_jumping;
+                return Identifier.of(SpooncraftAdditions.ID, "gareth_bucket_jumping");
             } else {
-                return this.cmd_gareth;
+                return Identifier.of(SpooncraftAdditions.ID, "gareth_bucket");
             }
         } else {
             if (Boolean.TRUE.equals(stack.get(ModComponents.SLIME_EXCITED))) {
-                return this.cmd_jumping;
+                return Identifier.of(SpooncraftAdditions.ID, "slime_bucket_jumping");
             } else {
-                return this.cmd;
+                return Identifier.of(SpooncraftAdditions.ID, "slime_bucket");
             }
         }
     }

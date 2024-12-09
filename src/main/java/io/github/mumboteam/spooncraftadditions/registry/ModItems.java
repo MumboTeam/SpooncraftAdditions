@@ -4,7 +4,6 @@ import eu.pb4.polymer.core.api.block.PolymerHeadBlock;
 import eu.pb4.polymer.core.api.item.PolymerHeadBlockItem;
 import eu.pb4.polymer.core.api.item.PolymerItemGroupUtils;
 import eu.pb4.polymer.core.api.item.SimplePolymerItem;
-import eu.pb4.polymer.resourcepack.api.PolymerResourcePackUtils;
 import io.github.mumboteam.spooncraftadditions.SpooncraftAdditions;
 import io.github.mumboteam.spooncraftadditions.item.*;
 import net.minecraft.block.Block;
@@ -78,8 +77,7 @@ public class ModItems {
         PolymerItemGroupUtils.registerPolymerItemGroup(Identifier.of(SpooncraftAdditions.ID, "items"), ItemGroup.create(ItemGroup.Row.BOTTOM, -1)
                 .icon(() -> {
                     ItemStack item = new ItemStack(Items.NETHERITE_SHOVEL);
-                    Identifier cmd = PolymerResourcePackUtils.getBridgedModelId(Identifier.of(SpooncraftAdditions.ID, "item/spooncraft_spoon"));
-                    item.set(DataComponentTypes.ITEM_MODEL, cmd);
+                    item.set(DataComponentTypes.ITEM_MODEL, Identifier.of(SpooncraftAdditions.ID, "spooncraft_spoon"));
                     return item;
                 })
                 .displayName(Text.translatable("itemGroup.spooncraftadditions"))

@@ -2,7 +2,6 @@ package io.github.mumboteam.spooncraftadditions.entity;
 
 import com.mojang.datafixers.util.Pair;
 import eu.pb4.polymer.core.api.entity.PolymerEntity;
-import eu.pb4.polymer.resourcepack.api.PolymerResourcePackUtils;
 import io.github.mumboteam.spooncraftadditions.SpooncraftAdditions;
 import io.github.mumboteam.spooncraftadditions.mixin.AbstractBoatEntityAccessor;
 import net.minecraft.component.DataComponentTypes;
@@ -33,7 +32,7 @@ public class DuckEntity extends BoatEntity implements PolymerEntity {
         super(entityType, world, itemSupplier);
         this.setInvisible(true);
         this.itemStack = Items.PAPER.getDefaultStack();
-        this.itemStack.set(DataComponentTypes.ITEM_MODEL, PolymerResourcePackUtils.getBridgedModelId(Identifier.of(SpooncraftAdditions.ID, "item/hat/duck")));
+        this.itemStack.set(DataComponentTypes.ITEM_MODEL, Identifier.of(SpooncraftAdditions.ID, "duck"));
     }
 
     @Override

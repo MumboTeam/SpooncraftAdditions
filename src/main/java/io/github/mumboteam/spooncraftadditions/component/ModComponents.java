@@ -17,11 +17,6 @@ public class ModComponents {
             ComponentType.<Boolean>builder().codec(Codec.BOOL).build()
     );
 
-    public static final ComponentType<Integer> SWORD_VARIANT = register(
-            Identifier.of(SpooncraftAdditions.ID, "sword_variant"),
-            ComponentType.<Integer>builder().codec(Codec.INT).build()
-    );
-
     private static <T> ComponentType<T> register(Identifier id, ComponentType<T> entry) {
         ComponentType<T> componentType = Registry.register(Registries.DATA_COMPONENT_TYPE, id, entry);
         PolymerComponent.registerDataComponent(componentType);

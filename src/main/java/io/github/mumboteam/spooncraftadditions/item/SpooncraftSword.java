@@ -1,32 +1,20 @@
 package io.github.mumboteam.spooncraftadditions.item;
 
 import eu.pb4.polymer.core.api.item.PolymerItem;
-import eu.pb4.polymer.resourcepack.api.PolymerResourcePackUtils;
-import io.github.mumboteam.spooncraftadditions.SpooncraftAdditions;
-import io.github.mumboteam.spooncraftadditions.component.ModComponents;
 import io.github.mumboteam.spooncraftadditions.material.SpooncraftMaterial;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.CustomModelDataComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.*;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
-import org.jetbrains.annotations.Nullable;
 import xyz.nucleoid.packettweaker.PacketContext;
 
 import java.util.List;
 
 public class SpooncraftSword extends SwordItem implements PolymerItem {
-    private final Identifier[] cmds;
-
     public SpooncraftSword(Settings settings) {
-        super(SpooncraftMaterial.MATERIAL, 3, -2.4F, settings.fireproof().rarity(Rarity.EPIC).component(ModComponents.SWORD_VARIANT, 0));
-        this.cmds = new Identifier[]{
-                PolymerResourcePackUtils.getBridgedModelId(Identifier.of(SpooncraftAdditions.ID, "item/spooncraft_sword/1")),
-                PolymerResourcePackUtils.getBridgedModelId(Identifier.of(SpooncraftAdditions.ID, "item/spooncraft_sword/2")),
-                PolymerResourcePackUtils.getBridgedModelId(Identifier.of(SpooncraftAdditions.ID, "item/spooncraft_sword/3")),
-                PolymerResourcePackUtils.getBridgedModelId(Identifier.of(SpooncraftAdditions.ID, "item/spooncraft_sword/4")),
-                PolymerResourcePackUtils.getBridgedModelId(Identifier.of(SpooncraftAdditions.ID, "item/spooncraft_sword/5")),
-                PolymerResourcePackUtils.getBridgedModelId(Identifier.of(SpooncraftAdditions.ID, "item/spooncraft_sword/6"))
-        };
+        super(SpooncraftMaterial.MATERIAL, 3, -2.4F, settings.fireproof().rarity(Rarity.EPIC).component(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(List.of(0f), List.of(), List.of(), List.of())));
     }
 
     @Override
@@ -40,13 +28,14 @@ public class SpooncraftSword extends SwordItem implements PolymerItem {
     }
 
     @Override
-    public @Nullable Identifier getPolymerItemModel(ItemStack stack, PacketContext context) {
-        return this.cmds[stack.get(ModComponents.SWORD_VARIANT)];
-    }
-
-    @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.set(ModComponents.SWORD_VARIANT, (stack.get(ModComponents.SWORD_VARIANT) + 1) % cmds.length);
+        CustomModelDataComponent cmd = stack.get(DataComponentTypes.CUSTOM_MODEL_DATA);
+        if (cmd != null && cmd.getFloat(0) != null) {
+            stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(List.of((stack.get(DataComponentTypes.CUSTOM_MODEL_DATA).getFloat(0) + 1) % 6) ,List.of(), List.of(), List.of()));
+        } else {
+            stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(List.of(1f), List.of(), List.of(), List.of()));
+        }
+
         return super.postHit(stack, target, attacker);
     }
 }
