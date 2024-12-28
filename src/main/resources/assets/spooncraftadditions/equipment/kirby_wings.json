@@ -1,0 +1,10 @@
+{
+  "layers": {
+    "wings": [
+      {
+        "texture": "spooncraftadditions:kirby_wings",
+        "use_player_texture": false
+      }
+    ]
+  }
+}

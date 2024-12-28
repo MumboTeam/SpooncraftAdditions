@@ -8,6 +8,8 @@ import io.github.mumboteam.spooncraftadditions.SpooncraftAdditions;
 import io.github.mumboteam.spooncraftadditions.item.*;
 import net.minecraft.block.Block;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.EquippableComponent;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.item.equipment.ArmorMaterials;
 import net.minecraft.item.equipment.EquipmentType;
@@ -15,9 +17,11 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+import net.minecraft.util.Unit;
 
 import java.util.function.Function;
 
@@ -46,6 +50,9 @@ public class ModItems {
     public static final Item NETHERITE_DEEP_VOID_SANCTUARY_HAT = register("netherite_deep_void_sanctuary_hat", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "deep_void_sanctuary_hat", ArmorMaterials.NETHERITE));
     public static final Item DUCK_HAT = register("duck_hat", (settings) -> new DuckHat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), ArmorMaterials.DIAMOND, ModEntityTypes.DUCK));
     public static final Item NETHERITE_DUCK_HAT = register("netherite_duck_hat", (settings) -> new DuckHat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), ArmorMaterials.NETHERITE, ModEntityTypes.NETHERITE_DUCK));
+
+    public static final Item DRAGON_WINGS = register("dragon_wings", (settings -> new SimplePolymerItem(settings.maxDamage(432).rarity(Rarity.EPIC).component(DataComponentTypes.GLIDER, Unit.INSTANCE).component(DataComponentTypes.EQUIPPABLE, EquippableComponent.builder(EquipmentSlot.CHEST).equipSound(SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA).model(ModEquipmentAssetKeys.DRAGON_WINGS).damageOnHurt(false).build()).repairable(Items.PHANTOM_MEMBRANE), Items.ELYTRA, true)));
+    public static final Item KIRBY_WINGS = register("kirby_wings", (settings -> new SimplePolymerItem(settings.maxDamage(432).rarity(Rarity.EPIC).component(DataComponentTypes.GLIDER, Unit.INSTANCE).component(DataComponentTypes.EQUIPPABLE, EquippableComponent.builder(EquipmentSlot.CHEST).equipSound(SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA).model(ModEquipmentAssetKeys.KIRBY_WINGS).damageOnHurt(false).build()).repairable(Items.PHANTOM_MEMBRANE), Items.ELYTRA, true)));
 
     public static final Item MUSIC_DISC_CACTUS_STRING_SAND = register("music_disc_cactus_string_sand", (settings) -> new MusicDisc(settings, "cactus_string_sand", ModJukeboxSongs.CACTUS_STRING_SAND));
     public static final Item MUSIC_DISC_CORRIDOR = register("music_disc_corridor", (settings) -> new MusicDisc(settings, "corridor", ModJukeboxSongs.CORRIDOR));
@@ -90,6 +97,8 @@ public class ModItems {
                     entries.add(ARROW_HAT);
                     entries.add(SKYBLOCK_STARTER_BASE_HAT);
                     entries.add(DEEP_VOID_SANCTUARY_HAT);
+                    entries.add(DRAGON_WINGS);
+                    entries.add(KIRBY_WINGS);
                     entries.add(DUCK_HAT);
                     entries.add(GIFT_BOX);
                     entries.add(CLAIM_SCROLL);

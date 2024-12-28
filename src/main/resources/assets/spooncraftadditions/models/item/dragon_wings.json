@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "spooncraftadditions:item/dragon_wings"
+  }
+}
