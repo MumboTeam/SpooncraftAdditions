@@ -50,6 +50,18 @@ public class ModItems {
     public static final Item NETHERITE_DEEP_VOID_SANCTUARY_HAT = register("netherite_deep_void_sanctuary_hat", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "deep_void_sanctuary_hat", ArmorMaterials.NETHERITE));
     public static final Item DUCK_HAT = register("duck_hat", (settings) -> new DuckHat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), ArmorMaterials.DIAMOND, ModEntityTypes.DUCK));
     public static final Item NETHERITE_DUCK_HAT = register("netherite_duck_hat", (settings) -> new DuckHat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), ArmorMaterials.NETHERITE, ModEntityTypes.NETHERITE_DUCK));
+    public static final Item S5_SPAWN_HAT = register("s5_spawn_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "s5_spawn_hat", ArmorMaterials.DIAMOND));
+    public static final Item NETHERITE_S5_SPAWN_HAT = register("netherite_s5_spawn_hat", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "s5_spawn_hat", ArmorMaterials.NETHERITE));
+    public static final Item WINDMILL_HOUSE_HAT = register("windmill_house_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "windmill_house_hat", ArmorMaterials.DIAMOND));
+    public static final Item NETHERITE_WINDMILL_HOUSE_HAT = register("netherite_windmill_house_hat", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "windmill_house_hat", ArmorMaterials.NETHERITE));
+    public static final Item TAG_FIRST = register("tag_first", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "tag_first", ArmorMaterials.DIAMOND));
+    public static final Item NETHERITE_TAG_FIRST = register("netherite_tag_first", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "tag_first", ArmorMaterials.NETHERITE));
+    public static final Item TAG_SECOND = register("tag_second", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "tag_second", ArmorMaterials.DIAMOND));
+    public static final Item NETHERITE_TAG_SECOND = register("netherite_tag_second", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "tag_second", ArmorMaterials.NETHERITE));
+    public static final Item TAG_THIRD = register("tag_third", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "tag_third", ArmorMaterials.DIAMOND));
+    public static final Item NETHERITE_TAG_THIRD = register("netherite_tag_third", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "tag_third", ArmorMaterials.NETHERITE));
+    public static final Item TAG_PARTICIPATION = register("tag_participation", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "tag_participation", ArmorMaterials.DIAMOND));
+    public static final Item NETHERITE_TAG_PARTICIPATION = register("netherite_tag_participation", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "tag_participation", ArmorMaterials.NETHERITE));
 
     public static final Item DRAGON_WINGS = register("dragon_wings", (settings -> new SimplePolymerItem(settings.maxDamage(432).rarity(Rarity.EPIC).component(DataComponentTypes.GLIDER, Unit.INSTANCE).component(DataComponentTypes.EQUIPPABLE, EquippableComponent.builder(EquipmentSlot.CHEST).equipSound(SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA).model(ModEquipmentAssetKeys.DRAGON_WINGS).damageOnHurt(false).build()).repairable(Items.PHANTOM_MEMBRANE), Items.ELYTRA, true)));
     public static final Item KIRBY_WINGS = register("kirby_wings", (settings -> new SimplePolymerItem(settings.maxDamage(432).rarity(Rarity.EPIC).component(DataComponentTypes.GLIDER, Unit.INSTANCE).component(DataComponentTypes.EQUIPPABLE, EquippableComponent.builder(EquipmentSlot.CHEST).equipSound(SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA).model(ModEquipmentAssetKeys.KIRBY_WINGS).damageOnHurt(false).build()).repairable(Items.PHANTOM_MEMBRANE), Items.ELYTRA, true)));
@@ -97,6 +109,12 @@ public class ModItems {
                     entries.add(ARROW_HAT);
                     entries.add(SKYBLOCK_STARTER_BASE_HAT);
                     entries.add(DEEP_VOID_SANCTUARY_HAT);
+                    entries.add(S5_SPAWN_HAT);
+                    entries.add(WINDMILL_HOUSE_HAT);
+                    entries.add(TAG_FIRST);
+                    entries.add(TAG_SECOND);
+                    entries.add(TAG_THIRD);
+                    entries.add(TAG_PARTICIPATION);
                     entries.add(DRAGON_WINGS);
                     entries.add(KIRBY_WINGS);
                     entries.add(DUCK_HAT);
