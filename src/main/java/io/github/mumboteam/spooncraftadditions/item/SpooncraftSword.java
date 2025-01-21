@@ -19,7 +19,8 @@ public class SpooncraftSword extends SwordItem implements PolymerItem {
 
     @Override
     public void modifyClientTooltip(List<Text> tooltip, ItemStack stack, PacketContext context) {
-        tooltip.addFirst(Text.translatable("item.spooncraftadditions.spooncraft_sword.desc").formatted(Formatting.RED));
+        tooltip.add(0, Text.translatable("item.spooncraftadditions.spooncraft_sword.desc[0]").formatted(Formatting.RED));
+        tooltip.add(1, Text.translatable("item.spooncraftadditions.spooncraft_sword.desc[1]").formatted(Formatting.RED));
     }
 
     @Override

@@ -1,8 +1,10 @@
 {
   "item.spooncraftadditions.spooncraft_spoon": "Spooncraft Spoon",
-  "item.spooncraftadditions.spooncraft_spoon.desc": "This is extremely rare! Awarded for Minecrafting excellence!",
+  "item.spooncraftadditions.spooncraft_spoon.desc[0]": "This is extremely rare!",
+  "item.spooncraftadditions.spooncraft_spoon.desc[1]": "Awarded for Minecrafting excellence!",
   "item.spooncraftadditions.spooncraft_sword": "Spooncraft Sword",
-  "item.spooncraftadditions.spooncraft_sword.desc": "This is extremely rare! Awarded for Minecrafting excellence!",
+  "item.spooncraftadditions.spooncraft_sword.desc[0]": "This is extremely rare!",
+  "item.spooncraftadditions.spooncraft_sword.desc[1]": "Awarded for Minecrafting excellence!",
   "item.spooncraftadditions.slime_bucket": "Slime Bucket",
   "item.spooncraftadditions.skyblock_hat": "Skyblock Hat",
   "item.spooncraftadditions.skyblock_hat.desc": "Awarded for participating in the base competitions in the Skyblock miniseason!",
