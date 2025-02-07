@@ -32,6 +32,7 @@ public class ModItems {
     public static final Item SPOONCRAFT_SPOON = register("spooncraft_spoon", SpooncraftSpoon::new);
     public static final Item SPOONCRAFT_SWORD = register("spooncraft_sword", SpooncraftSword::new);
     public static final Item SLIME_BUCKET = register("slime_bucket", SlimeBucket::new);
+    public static final Item SHRINK_RAY = register("shrink_ray", ShrinkRay::new);
 
     public static final Item GIFT_BOX = register("gift_box", (settings) -> new PolymerHeadBlockItem((Block & PolymerHeadBlock) ModBlocks.GIFT_BOX, settings));
 
@@ -105,6 +106,7 @@ public class ModItems {
                     entries.add(SPOONCRAFT_SWORD);
                     entries.add(SLIME_BUCKET);
                     entries.add(SKYBLOCK_HAT);
+                    entries.add(SHRINK_RAY);
                     entries.add(BALTOP_HAT);
                     entries.add(ARROW_HAT);
                     entries.add(SKYBLOCK_STARTER_BASE_HAT);

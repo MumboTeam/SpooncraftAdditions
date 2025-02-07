@@ -4,7 +4,8 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "AbstractBoatEntityAccessor",
-    "SlimeMixin"
+    "SlimeMixin",
+    "ShrinkRayTimer"
   ],
   "injectors": {
     "defaultRequire": 1
