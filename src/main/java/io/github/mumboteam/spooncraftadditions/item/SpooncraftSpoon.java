@@ -3,7 +3,7 @@ package io.github.mumboteam.spooncraftadditions.item;
 import eu.pb4.polymer.core.api.item.PolymerItem;
 import io.github.mumboteam.spooncraftadditions.material.SpooncraftMaterial;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.*;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
@@ -36,12 +36,12 @@ public class SpooncraftSpoon extends ShovelItem implements PolymerItem {
     }
 
     @Override
-    public boolean canMine(BlockState state, World world, BlockPos pos, PlayerEntity miner) {
-        if (!isUsable(miner.getMainHandStack())) {
+    public boolean canMine(ItemStack stack, BlockState state, World world, BlockPos pos, LivingEntity user) {
+        if (!isUsable(user.getMainHandStack())) {
             return false;
         }
 
-        return super.canMine(state, world, pos, miner);
+        return super.canMine(stack, state, world, pos, user);
     }
 
     @Override

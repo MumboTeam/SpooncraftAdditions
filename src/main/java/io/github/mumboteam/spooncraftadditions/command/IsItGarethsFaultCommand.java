@@ -15,7 +15,7 @@ public class IsItGarethsFaultCommand {
                     state.totalBlamed,
                     (state.totalBlamed == 1) ? "" : "s",
                     state.totalForgiven,
-                    (state.totalBlamed == 1) ? "" : "s",
+                    (state.totalForgiven == 1) ? "" : "s",
                     (state.totalBlamed > state.totalForgiven ) ? Text.translatable("gui.yes").formatted(Formatting.GREEN) : Text.translatable("gui.no").formatted(Formatting.RED)
             ).formatted(Formatting.GOLD), false);
 

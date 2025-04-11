@@ -12,9 +12,9 @@ import xyz.nucleoid.packettweaker.PacketContext;
 
 import java.util.List;
 
-public class SpooncraftSword extends SwordItem implements PolymerItem {
+public class SpooncraftSword extends Item implements PolymerItem {
     public SpooncraftSword(Settings settings) {
-        super(SpooncraftMaterial.MATERIAL, 3, -2.4F, settings.fireproof().rarity(Rarity.EPIC).component(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(List.of(0f), List.of(), List.of(), List.of())));
+        super(settings.sword(SpooncraftMaterial.MATERIAL, 3, -2.4F).fireproof().rarity(Rarity.EPIC).component(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(List.of(0f), List.of(), List.of(), List.of())));
     }
 
     @Override
@@ -29,7 +29,7 @@ public class SpooncraftSword extends SwordItem implements PolymerItem {
     }
 
     @Override
-    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+    public void postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         CustomModelDataComponent cmd = stack.get(DataComponentTypes.CUSTOM_MODEL_DATA);
         if (cmd != null && cmd.getFloat(0) != null) {
             stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(List.of((stack.get(DataComponentTypes.CUSTOM_MODEL_DATA).getFloat(0) + 1) % 6) ,List.of(), List.of(), List.of()));
@@ -37,6 +37,6 @@ public class SpooncraftSword extends SwordItem implements PolymerItem {
             stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(List.of(1f), List.of(), List.of(), List.of()));
         }
 
-        return super.postHit(stack, target, attacker);
+        super.postHit(stack, target, attacker);
     }
 }

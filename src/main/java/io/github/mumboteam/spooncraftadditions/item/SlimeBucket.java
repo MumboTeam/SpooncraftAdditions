@@ -6,11 +6,13 @@ import io.github.mumboteam.spooncraftadditions.component.ModComponents;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
@@ -36,7 +38,7 @@ public class SlimeBucket extends Item implements PolymerItem {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+    public void inventoryTick(ItemStack stack, ServerWorld world, Entity entity, @Nullable EquipmentSlot slot) {
         if (entity instanceof ServerPlayerEntity player) {
             boolean excited = Boolean.TRUE.equals(stack.get(ModComponents.SLIME_EXCITED));
 
@@ -90,5 +92,4 @@ public class SlimeBucket extends Item implements PolymerItem {
         ChunkPos chunkPos = player.getChunkPos();
         return ChunkRandom.getSlimeRandom(chunkPos.x, chunkPos.z, player.getServerWorld().getSeed(), 987234911L).nextInt(10) == 0;
     }
-
 }
