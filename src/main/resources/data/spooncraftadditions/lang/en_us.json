@@ -80,6 +80,8 @@
   "itemGroup.spooncraftadditions": "Spooncraft Additions",
   "itemGroup.spooncraftadditions.eggs": "Easter Eggs",
   "itemGroup.spooncraftadditions.discs": "Mumbo's Music",
+  "item.spooncraftadditions.egg": "Egg",
+  "item.spooncraftadditions.easter_basket": "Easter Basket",
   "commands.blamegareth.success": "%s has blamed Gareth for the %d%s time!",
   "commands.forgivegareth.success": "%s has forgiven Gareth for the %d%s time!",
   "commands.blamegareth.cooldown": "You're doing that too quickly!",
