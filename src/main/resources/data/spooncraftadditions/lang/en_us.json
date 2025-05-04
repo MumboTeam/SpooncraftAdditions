@@ -78,6 +78,8 @@
   "item.spooncraftadditions.claim_scroll": "Claim Scroll",
   "item.spooncraftadditions.claim_checker": "Claim Checker",
   "itemGroup.spooncraftadditions": "Spooncraft Additions",
+  "itemGroup.spooncraftadditions.eggs": "Easter Eggs",
+  "itemGroup.spooncraftadditions.discs": "Mumbo's Music",
   "commands.blamegareth.success": "%s has blamed Gareth for the %d%s time!",
   "commands.forgivegareth.success": "%s has forgiven Gareth for the %d%s time!",
   "commands.blamegareth.cooldown": "You're doing that too quickly!",

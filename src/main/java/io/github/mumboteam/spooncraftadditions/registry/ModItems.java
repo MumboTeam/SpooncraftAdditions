@@ -26,8 +26,7 @@ import net.minecraft.util.Unit;
 import java.util.function.Function;
 
 public class ModItems {
-    private ModItems() {
-    }
+    private ModItems() {}
 
     public static final Item SPOONCRAFT_SPOON = register("spooncraft_spoon", SpooncraftSpoon::new);
     public static final Item SPOONCRAFT_SWORD = register("spooncraft_sword", SpooncraftSword::new);
@@ -51,7 +50,7 @@ public class ModItems {
     public static final Item NETHERITE_DEEP_VOID_SANCTUARY_HAT = register("netherite_deep_void_sanctuary_hat", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "deep_void_sanctuary_hat", ArmorMaterials.NETHERITE));
     public static final Item DUCK_HAT = register("duck_hat", (settings) -> new DuckHat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), ArmorMaterials.DIAMOND, ModEntityTypes.DUCK));
     public static final Item NETHERITE_DUCK_HAT = register("netherite_duck_hat", (settings) -> new DuckHat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), ArmorMaterials.NETHERITE, ModEntityTypes.NETHERITE_DUCK));
-    public static final Item S5_SPAWN_HAT = register("s5_spawn_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "s5_spawn_hat", ArmorMaterials.DIAMOND));
+    public static final Item S5_SPAWN_HAT = register("s5_spawn_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "s5_spawn_hat", ArmorMaterials.DIAMOND)); //S5 starter base participation
     public static final Item NETHERITE_S5_SPAWN_HAT = register("netherite_s5_spawn_hat", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "s5_spawn_hat", ArmorMaterials.NETHERITE));
     public static final Item WINDMILL_HOUSE_HAT = register("windmill_house_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "windmill_house_hat", ArmorMaterials.DIAMOND));
     public static final Item NETHERITE_WINDMILL_HOUSE_HAT = register("netherite_windmill_house_hat", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "windmill_house_hat", ArmorMaterials.NETHERITE));
@@ -66,6 +65,21 @@ public class ModItems {
 
     public static final Item DRAGON_WINGS = register("dragon_wings", (settings -> new SimplePolymerItem(settings.maxDamage(432).rarity(Rarity.EPIC).component(DataComponentTypes.GLIDER, Unit.INSTANCE).component(DataComponentTypes.EQUIPPABLE, EquippableComponent.builder(EquipmentSlot.CHEST).equipSound(SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA).model(ModEquipmentAssetKeys.DRAGON_WINGS).damageOnHurt(false).build()).repairable(Items.PHANTOM_MEMBRANE), Items.ELYTRA, true)));
     public static final Item KIRBY_WINGS = register("kirby_wings", (settings -> new SimplePolymerItem(settings.maxDamage(432).rarity(Rarity.EPIC).component(DataComponentTypes.GLIDER, Unit.INSTANCE).component(DataComponentTypes.EQUIPPABLE, EquippableComponent.builder(EquipmentSlot.CHEST).equipSound(SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA).model(ModEquipmentAssetKeys.KIRBY_WINGS).damageOnHurt(false).build()).repairable(Items.PHANTOM_MEMBRANE), Items.ELYTRA, true)));
+
+    public static final Item EASTER_BASKET = register("easter_basket", settings -> new SimplePolymerItem(settings, Items.PAPER, true));
+    public static final Item EGG_MUMBO = register("eggs/eggmumbo", (settings -> new SimplePolymerItem(settings, Items.PAPER, true)));
+    public static final Item EGG1 = register("eggs/egg1", (settings -> new SimplePolymerItem(settings, Items.PAPER, true)));
+    public static final Item EGG11 = register("eggs/egg11", (settings -> new SimplePolymerItem(settings, Items.PAPER, true)));
+    public static final Item EGG12 = register("eggs/egg12", (settings -> new SimplePolymerItem(settings, Items.PAPER, true)));
+    public static final Item EGG13 = register("eggs/egg13", (settings -> new SimplePolymerItem(settings, Items.PAPER, true)));
+    public static final Item EGG2 = register("eggs/egg2", (settings -> new SimplePolymerItem(settings, Items.PAPER, true)));
+    public static final Item EGG21 = register("eggs/egg21", (settings -> new SimplePolymerItem(settings, Items.PAPER, true)));
+    public static final Item EGG22 = register("eggs/egg22", (settings -> new SimplePolymerItem(settings, Items.PAPER, true)));
+    public static final Item EGG23 = register("eggs/egg23", (settings -> new SimplePolymerItem(settings, Items.PAPER, true)));
+    public static final Item EGG3 = register("eggs/egg3", (settings -> new SimplePolymerItem(settings, Items.PAPER, true)));
+    public static final Item EGG31 = register("eggs/egg31", (settings -> new SimplePolymerItem(settings, Items.PAPER, true)));
+    public static final Item EGG32 = register("eggs/egg32", (settings -> new SimplePolymerItem(settings, Items.PAPER, true)));
+    public static final Item EGG33 = register("eggs/egg33", (settings -> new SimplePolymerItem(settings, Items.PAPER, true)));
 
     public static final Item MUSIC_DISC_CACTUS_STRING_SAND = register("music_disc_cactus_string_sand", (settings) -> new MusicDisc(settings, "cactus_string_sand", ModJukeboxSongs.CACTUS_STRING_SAND));
     public static final Item MUSIC_DISC_CORRIDOR = register("music_disc_corridor", (settings) -> new MusicDisc(settings, "corridor", ModJukeboxSongs.CORRIDOR));
@@ -95,34 +109,41 @@ public class ModItems {
 
     public static void initialize() {
         PolymerItemGroupUtils.registerPolymerItemGroup(Identifier.of(SpooncraftAdditions.ID, "items"), ItemGroup.create(ItemGroup.Row.BOTTOM, -1)
-                .icon(() -> {
-                    ItemStack item = new ItemStack(Items.NETHERITE_SHOVEL);
-                    item.set(DataComponentTypes.ITEM_MODEL, Identifier.of(SpooncraftAdditions.ID, "spooncraft_spoon"));
-                    return item;
-                })
+                .icon(() -> new ItemStack(ModItems.SPOONCRAFT_SPOON))
                 .displayName(Text.translatable("itemGroup.spooncraftadditions"))
                 .entries(((context, entries) -> {
                     entries.add(SPOONCRAFT_SPOON);
                     entries.add(SPOONCRAFT_SWORD);
                     entries.add(SLIME_BUCKET);
-                    entries.add(SKYBLOCK_HAT);
                     entries.add(SHRINK_RAY);
+
+                    entries.add(GIFT_BOX);
+
+                    entries.add(CLAIM_SCROLL);
+                    entries.add(CLAIM_CHECKER);
+
+                    entries.add(SKYBLOCK_HAT);
                     entries.add(BALTOP_HAT);
                     entries.add(ARROW_HAT);
                     entries.add(SKYBLOCK_STARTER_BASE_HAT);
                     entries.add(DEEP_VOID_SANCTUARY_HAT);
-                    entries.add(S5_SPAWN_HAT);
+                    entries.add(DUCK_HAT);
+                    entries.add(S5_SPAWN_HAT); // S5 Starter base participation
                     entries.add(WINDMILL_HOUSE_HAT);
                     entries.add(TAG_FIRST);
                     entries.add(TAG_SECOND);
                     entries.add(TAG_THIRD);
                     entries.add(TAG_PARTICIPATION);
+
                     entries.add(DRAGON_WINGS);
                     entries.add(KIRBY_WINGS);
-                    entries.add(DUCK_HAT);
-                    entries.add(GIFT_BOX);
-                    entries.add(CLAIM_SCROLL);
-                    entries.add(CLAIM_CHECKER);
+                })).build()
+        );
+
+        PolymerItemGroupUtils.registerPolymerItemGroup(Identifier.of(SpooncraftAdditions.ID, "discs"), ItemGroup.create(ItemGroup.Row.BOTTOM, -1)
+                .icon(() -> new ItemStack(ModItems.MUSIC_DISC_CACTUS_STRING_SAND))
+                .displayName(Text.translatable("itemGroup.spooncraftadditions.discs"))
+                .entries(((context, entries) -> {
                     entries.add(MUSIC_DISC_CACTUS_STRING_SAND);
                     entries.add(MUSIC_DISC_CORRIDOR);
                     entries.add(MUSIC_DISC_DIABOLICAL);
@@ -142,6 +163,27 @@ public class ModItems {
                     entries.add(MUSIC_DISC_THE_SUPER_WEAPON);
                     entries.add(MUSIC_DISC_TINY_TIMELAPSE);
                     entries.add(MUSIC_DISC_WATER_SOURCE);
+                })).build()
+        );
+
+        PolymerItemGroupUtils.registerPolymerItemGroup(Identifier.of(SpooncraftAdditions.ID, "eggs"), ItemGroup.create(ItemGroup.Row.BOTTOM, -1)
+                .icon(() -> new ItemStack(ModItems.EGG_MUMBO))
+                .displayName(Text.translatable("itemGroup.spooncraftadditions.eggs"))
+                .entries(((context, entries) -> {
+                    entries.add(EASTER_BASKET);
+                    entries.add(EGG_MUMBO);
+                    entries.add(EGG1);
+                    entries.add(EGG11);
+                    entries.add(EGG12);
+                    entries.add(EGG13);
+                    entries.add(EGG2);
+                    entries.add(EGG21);
+                    entries.add(EGG22);
+                    entries.add(EGG23);
+                    entries.add(EGG3);
+                    entries.add(EGG31);
+                    entries.add(EGG32);
+                    entries.add(EGG33);
                 })).build()
         );
     }
