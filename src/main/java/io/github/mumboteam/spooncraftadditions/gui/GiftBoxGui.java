@@ -104,7 +104,8 @@ public class GiftBoxGui extends LayeredGui {
 
         int pos = 0;
         for (Reward reward : playerRewards.getClaimable()) {
-            rewardsTab.setSlot(pos, new GuiElementBuilder(reward.item().getDefaultStack())
+            ItemStack stack = new ItemStack(reward.item(), reward.amount());
+            rewardsTab.setSlot(pos, new GuiElementBuilder(stack)
                     .addLoreLine(Text.empty())
                     .addLoreLine(Text.translatable("gui.spooncraftadditions.giftbox.claim").setStyle(Style.EMPTY.withItalic(false).withColor(Formatting.GREEN)))
                     .setCallback(() -> claimReward(reward)));
@@ -117,7 +118,8 @@ public class GiftBoxGui extends LayeredGui {
 
         pos = 0;
         for (Reward reward : playerRewards.getClaimed()) {
-            claimedTab.setSlot(pos, new GuiElementBuilder(reward.item().getDefaultStack()));
+            ItemStack stack = new ItemStack(reward.item(), reward.amount());
+            claimedTab.setSlot(pos, new GuiElementBuilder(stack));
             pos += 1;
         }
         this.claimedTabTitle = "-3.";
@@ -127,7 +129,8 @@ public class GiftBoxGui extends LayeredGui {
 
         pos = 0;
         for (Reward reward : playerRewards.getAll()) {
-            allTab.setSlot(pos, new GuiElementBuilder(reward.item().getDefaultStack()));
+            ItemStack stack = new ItemStack(reward.item(), reward.amount());
+            allTab.setSlot(pos, new GuiElementBuilder(stack));
             pos += 1;
         }
         this.allTabTitle = "-4.";

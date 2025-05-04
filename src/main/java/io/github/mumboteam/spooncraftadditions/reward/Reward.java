@@ -11,10 +11,12 @@ import java.util.UUID;
 
 public record Reward(
         Item item,
+        int amount,
         List<UUID> eligiblePlayers
 ) {
     public static final Codec<Reward> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Registries.ITEM.getCodec().fieldOf("item").forGetter(Reward::item),
+            Codec.INT.optionalFieldOf("amount", 1).forGetter(Reward::amount),
             Codec.list(Uuids.CODEC).fieldOf("eligiblePlayers").forGetter(Reward::eligiblePlayers)
     ).apply(instance, Reward::new));
 

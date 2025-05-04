@@ -1,6 +1,7 @@
 package io.github.mumboteam.spooncraftadditions.reward;
 
 import eu.pb4.playerdata.api.PlayerDataApi;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.ArrayList;
@@ -38,7 +39,8 @@ public class PlayerRewards {
     }
 
     public void claimReward(Reward reward) {
-        this.player.giveItemStack(reward.item().getDefaultStack());
+        ItemStack stack = new ItemStack(reward.item(), reward.amount());
+        this.player.giveItemStack(stack);
         this.claimedRewards.rewards.add(Rewards.getIdentifier(reward));
 
         PlayerDataApi.setCustomDataFor(this.player, Rewards.CLAIMED_REWARDS_STORAGE, this.claimedRewards);
