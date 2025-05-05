@@ -67,7 +67,7 @@ public class ModItems {
     public static final Item DRAGON_WINGS = register("dragon_wings", (settings -> new SimplePolymerItem(settings.maxDamage(432).rarity(Rarity.EPIC).component(DataComponentTypes.GLIDER, Unit.INSTANCE).component(DataComponentTypes.EQUIPPABLE, EquippableComponent.builder(EquipmentSlot.CHEST).equipSound(SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA).model(ModEquipmentAssetKeys.DRAGON_WINGS).damageOnHurt(false).build()).repairable(Items.PHANTOM_MEMBRANE), Items.ELYTRA, true)));
     public static final Item KIRBY_WINGS = register("kirby_wings", (settings -> new SimplePolymerItem(settings.maxDamage(432).rarity(Rarity.EPIC).component(DataComponentTypes.GLIDER, Unit.INSTANCE).component(DataComponentTypes.EQUIPPABLE, EquippableComponent.builder(EquipmentSlot.CHEST).equipSound(SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA).model(ModEquipmentAssetKeys.KIRBY_WINGS).damageOnHurt(false).build()).repairable(Items.PHANTOM_MEMBRANE), Items.ELYTRA, true)));
 
-    public static final Item EASTER_BASKET = register("easter_basket", settings -> new SimplePolymerItem(settings.maxCount(1), Items.PAPER, true));
+    public static final Item EASTER_BASKET = register("easter_basket", EasterBasket::new);
     public static final Item EGG_MUMBO = register("eggs/eggmumbo", (settings -> new PolymerBlockItem(ModBlocks.EGG_MUMBO, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
     public static final Item EGG1 = register("eggs/egg1", (settings -> new PolymerBlockItem(ModBlocks.EGG1, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
     public static final Item EGG11 = register("eggs/egg11", (settings -> new PolymerBlockItem(ModBlocks.EGG11, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
@@ -110,7 +110,11 @@ public class ModItems {
 
     public static void initialize() {
         PolymerItemGroupUtils.registerPolymerItemGroup(Identifier.of(SpooncraftAdditions.ID, "items"), ItemGroup.create(ItemGroup.Row.BOTTOM, -1)
-                .icon(() -> new ItemStack(ModItems.SPOONCRAFT_SPOON))
+                .icon(() -> {
+                    ItemStack item = new ItemStack(Items.NETHERITE_SHOVEL);
+                    item.set(DataComponentTypes.ITEM_MODEL, Identifier.of(SpooncraftAdditions.ID, "spooncraft_spoon"));
+                    return item;
+                })
                 .displayName(Text.translatable("itemGroup.spooncraftadditions"))
                 .entries(((context, entries) -> {
                     entries.add(SPOONCRAFT_SPOON);
@@ -142,7 +146,11 @@ public class ModItems {
         );
 
         PolymerItemGroupUtils.registerPolymerItemGroup(Identifier.of(SpooncraftAdditions.ID, "discs"), ItemGroup.create(ItemGroup.Row.BOTTOM, -1)
-                .icon(() -> new ItemStack(ModItems.MUSIC_DISC_CACTUS_STRING_SAND))
+                .icon(() -> {
+                    ItemStack item = new ItemStack(Items.PAPER);
+                    item.set(DataComponentTypes.ITEM_MODEL, Identifier.of(SpooncraftAdditions.ID, "music_disc_dibby_dibby_diamonds"));
+                    return item;
+                })
                 .displayName(Text.translatable("itemGroup.spooncraftadditions.discs"))
                 .entries(((context, entries) -> {
                     entries.add(MUSIC_DISC_CACTUS_STRING_SAND);
