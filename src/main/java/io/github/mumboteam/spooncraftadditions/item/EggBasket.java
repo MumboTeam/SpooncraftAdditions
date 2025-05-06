@@ -10,15 +10,15 @@ import xyz.nucleoid.packettweaker.PacketContext;
 
 import java.util.List;
 
-public class EasterBasket extends BundleItem implements PolymerItem {
+public class EggBasket extends BundleItem implements PolymerItem {
 
-    public EasterBasket(Settings settings) {
+    public EggBasket(Settings settings) {
         super(settings.maxCount(1).maxDamage(BundleItem.DEFAULT_MAX_COUNT).component(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT));
     }
 
     @Override
     public void modifyClientTooltip(List<Text> tooltip, ItemStack stack, PacketContext context) {
-        tooltip.addFirst(Text.translatable("item.spooncraftadditions.easter_basket.desc").formatted(Formatting.GRAY));
+        tooltip.addFirst(Text.translatable("item.spooncraftadditions.egg_basket.desc").formatted(Formatting.GRAY));
     }
 
     @Override

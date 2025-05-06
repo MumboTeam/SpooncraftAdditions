@@ -2,10 +2,10 @@
 	"credit": "Made with Blockbench",
 	"parent": "minecraft:bundle",
 	"textures": {
-		"0": "spooncraftadditions:item/easter_basket",
-		"1": "spooncraftadditions:item/easter_basket_grass",
-		"2": "spooncraftadditions:item/easter_basket_eggs",
-		"particle": "spooncraftadditions:item/easter_basket"
+		"0": "spooncraftadditions:item/egg_basket",
+		"1": "spooncraftadditions:item/egg_basket_grass",
+		"2": "spooncraftadditions:item/egg_basket_eggs",
+		"particle": "spooncraftadditions:item/egg_basket"
 	},
 	"elements": [
 		{

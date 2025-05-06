@@ -9,13 +9,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FireworkRocketEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import xyz.nucleoid.packettweaker.PacketContext;
-import net.minecraft.util.Hand;
 
 import java.util.List;
 
@@ -29,19 +30,23 @@ public class RedstoneStaff extends Item implements PolymerItem {
     }
 
     @Override
-    public ActionResult use(World world, PlayerEntity user, Hand hand) {
-        ItemStack itemStack = user.getStackInHand(hand);
-        if (!user.getItemCooldownManager().isCoolingDown(itemStack)) {
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        PlayerEntity user = context.getPlayer();
+        ItemStack itemStack = context.getStack();
+        World world = context.getWorld();
+
+        if (user != null && !user.getItemCooldownManager().isCoolingDown(itemStack)) {
             user.getItemCooldownManager().set(itemStack, COOLDOWN);
             List<FireworkExplosionComponent> explosions = List.of(RED_BALL);
             FireworksComponent fwComp = new FireworksComponent(0, explosions);
             ItemStack rocketStack = new ItemStack(Items.FIREWORK_ROCKET);
             rocketStack.set(DataComponentTypes.FIREWORKS, fwComp);
 
+            Vec3d pos = context.getHitPos();
             FireworkRocketEntity rocket =
                     new FireworkRocketEntity(
                             world,
-                            user.getX(), user.getY() + 1.0, user.getZ(),
+                            pos.getX(), pos.getY(), pos.getZ(),
                             rocketStack
                     );
             world.spawnEntity(rocket);

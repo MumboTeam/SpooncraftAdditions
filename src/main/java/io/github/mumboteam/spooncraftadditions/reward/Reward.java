@@ -13,8 +13,7 @@ public record Reward(
         List<UUID> eligiblePlayers
 ) {
     public static final Codec<Reward> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            // vanilla Item codec
-            ItemStack.CODEC.fieldOf("itemstack").forGetter(Reward::stack),
+            ItemStack.CODEC.fieldOf("stack").forGetter(Reward::stack),
             Codec.list(Uuids.CODEC).fieldOf("eligiblePlayers").forGetter(Reward::eligiblePlayers)
     ).apply(instance, Reward::new));
 

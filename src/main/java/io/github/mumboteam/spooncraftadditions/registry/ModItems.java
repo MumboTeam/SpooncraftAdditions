@@ -63,28 +63,28 @@ public class ModItems {
     public static final Item NETHERITE_TAG_THIRD = register("netherite_tag_third", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "tag_third", ArmorMaterials.NETHERITE));
     public static final Item TAG_PARTICIPATION = register("tag_participation", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "tag_participation", ArmorMaterials.DIAMOND));
     public static final Item NETHERITE_TAG_PARTICIPATION = register("netherite_tag_participation", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "tag_participation", ArmorMaterials.NETHERITE));
-    public static final Item REDSTONE_STAFF = register("redstone_staff", settings -> new RedstoneStaff(settings.rarity(Rarity.UNCOMMON).sword(ToolMaterial.DIAMOND, 7, -2.4F)));
-    public static final Item NETHERITE_REDSTONE_STAFF = register("netherite_redstone_staff", settings -> new RedstoneStaff(settings.rarity(Rarity.EPIC).sword(ToolMaterial.NETHERITE, 8, -2.4F).translationKey("item.spooncraftadditions.redstone_staff")));
+    public static final Item REDSTONE_STAFF = register("redstone_staff", settings -> new RedstoneStaff(settings.rarity(Rarity.UNCOMMON).sword(ToolMaterial.DIAMOND, 3.0F, -2.4F)));
+    public static final Item NETHERITE_REDSTONE_STAFF = register("netherite_redstone_staff", settings -> new RedstoneStaff(settings.rarity(Rarity.EPIC).sword(ToolMaterial.NETHERITE, 3.0F, -2.4F).translationKey("item.spooncraftadditions.redstone_staff")));
     public static final Item REDSTONE_HAT = register("redstone_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "redstone_hat", ArmorMaterials.DIAMOND));
     public static final Item NETHERITE_REDSTONE_HAT = register("netherite_redstone_hat", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "redstone_hat", ArmorMaterials.NETHERITE));
 
     public static final Item DRAGON_WINGS = register("dragon_wings", (settings -> new SimplePolymerItem(settings.maxDamage(432).rarity(Rarity.EPIC).component(DataComponentTypes.GLIDER, Unit.INSTANCE).component(DataComponentTypes.EQUIPPABLE, EquippableComponent.builder(EquipmentSlot.CHEST).equipSound(SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA).model(ModEquipmentAssetKeys.DRAGON_WINGS).damageOnHurt(false).build()).repairable(Items.PHANTOM_MEMBRANE), Items.ELYTRA, true)));
     public static final Item KIRBY_WINGS = register("kirby_wings", (settings -> new SimplePolymerItem(settings.maxDamage(432).rarity(Rarity.EPIC).component(DataComponentTypes.GLIDER, Unit.INSTANCE).component(DataComponentTypes.EQUIPPABLE, EquippableComponent.builder(EquipmentSlot.CHEST).equipSound(SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA).model(ModEquipmentAssetKeys.KIRBY_WINGS).damageOnHurt(false).build()).repairable(Items.PHANTOM_MEMBRANE), Items.ELYTRA, true)));
 
-    public static final Item EASTER_BASKET = register("easter_basket", EasterBasket::new);
-    public static final Item EGG_MUMBO = register("eggs/eggmumbo", (settings -> new PolymerBlockItem(ModBlocks.EGG_MUMBO, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
-    public static final Item EGG1 = register("eggs/egg1", (settings -> new PolymerBlockItem(ModBlocks.EGG1, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
-    public static final Item EGG11 = register("eggs/egg11", (settings -> new PolymerBlockItem(ModBlocks.EGG11, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
-    public static final Item EGG12 = register("eggs/egg12", (settings -> new PolymerBlockItem(ModBlocks.EGG12, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
-    public static final Item EGG13 = register("eggs/egg13", (settings -> new PolymerBlockItem(ModBlocks.EGG13, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
-    public static final Item EGG2 = register("eggs/egg2", (settings -> new PolymerBlockItem(ModBlocks.EGG2, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
-    public static final Item EGG21 = register("eggs/egg21", (settings -> new PolymerBlockItem(ModBlocks.EGG21, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
-    public static final Item EGG22 = register("eggs/egg22", (settings -> new PolymerBlockItem(ModBlocks.EGG22, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
-    public static final Item EGG23 = register("eggs/egg23", (settings -> new PolymerBlockItem(ModBlocks.EGG23, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
-    public static final Item EGG3 = register("eggs/egg3", (settings -> new PolymerBlockItem(ModBlocks.EGG3, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
-    public static final Item EGG31 = register("eggs/egg31", (settings -> new PolymerBlockItem(ModBlocks.EGG31, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
-    public static final Item EGG32 = register("eggs/egg32", (settings -> new PolymerBlockItem(ModBlocks.EGG32, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
-    public static final Item EGG33 = register("eggs/egg33", (settings -> new PolymerBlockItem(ModBlocks.EGG33, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG_BASKET = register("egg_basket", EggBasket::new);
+    public static final Item EGG_MUMBO = register("eggmumbo", (settings -> new PolymerBlockItem(ModBlocks.EGG_MUMBO, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG1 = register("egg1", (settings -> new PolymerBlockItem(ModBlocks.EGG1, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG11 = register("egg11", (settings -> new PolymerBlockItem(ModBlocks.EGG11, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG12 = register("egg12", (settings -> new PolymerBlockItem(ModBlocks.EGG12, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG13 = register("egg13", (settings -> new PolymerBlockItem(ModBlocks.EGG13, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG2 = register("egg2", (settings -> new PolymerBlockItem(ModBlocks.EGG2, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG21 = register("egg21", (settings -> new PolymerBlockItem(ModBlocks.EGG21, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG22 = register("egg22", (settings -> new PolymerBlockItem(ModBlocks.EGG22, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG23 = register("egg23", (settings -> new PolymerBlockItem(ModBlocks.EGG23, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG3 = register("egg3", (settings -> new PolymerBlockItem(ModBlocks.EGG3, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG31 = register("egg31", (settings -> new PolymerBlockItem(ModBlocks.EGG31, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG32 = register("egg32", (settings -> new PolymerBlockItem(ModBlocks.EGG32, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG33 = register("egg33", (settings -> new PolymerBlockItem(ModBlocks.EGG33, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
 
     public static final Item MUSIC_DISC_CACTUS_STRING_SAND = register("music_disc_cactus_string_sand", (settings) -> new MusicDisc(settings, "cactus_string_sand", ModJukeboxSongs.CACTUS_STRING_SAND));
     public static final Item MUSIC_DISC_CORRIDOR = register("music_disc_corridor", (settings) -> new MusicDisc(settings, "corridor", ModJukeboxSongs.CORRIDOR));
@@ -185,7 +185,7 @@ public class ModItems {
                 .icon(() -> new ItemStack(ModItems.EGG_MUMBO))
                 .displayName(Text.translatable("itemGroup.spooncraftadditions.eggs"))
                 .entries(((context, entries) -> {
-                    entries.add(EASTER_BASKET);
+                    entries.add(EGG_BASKET);
                     entries.add(EGG_MUMBO);
                     entries.add(EGG1);
                     entries.add(EGG11);
