@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:netherite_ingot",
+  "base": "spooncraftadditions:redstone_hat",
+  "result": {
+    "count": 1,
+    "id": "spooncraftadditions:netherite_redstone_hat"
+  },
+  "template": "minecraft:netherite_upgrade_smithing_template"
+}

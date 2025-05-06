@@ -1,6 +1,7 @@
 package io.github.mumboteam.spooncraftadditions.registry;
 
 import eu.pb4.polymer.core.api.block.PolymerHeadBlock;
+import eu.pb4.polymer.core.api.item.PolymerBlockItem;
 import eu.pb4.polymer.core.api.item.PolymerHeadBlockItem;
 import eu.pb4.polymer.core.api.item.PolymerItemGroupUtils;
 import eu.pb4.polymer.core.api.item.SimplePolymerItem;
@@ -26,8 +27,7 @@ import net.minecraft.util.Unit;
 import java.util.function.Function;
 
 public class ModItems {
-    private ModItems() {
-    }
+    private ModItems() {}
 
     public static final Item SPOONCRAFT_SPOON = register("spooncraft_spoon", SpooncraftSpoon::new);
     public static final Item SPOONCRAFT_SWORD = register("spooncraft_sword", SpooncraftSword::new);
@@ -51,7 +51,7 @@ public class ModItems {
     public static final Item NETHERITE_DEEP_VOID_SANCTUARY_HAT = register("netherite_deep_void_sanctuary_hat", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "deep_void_sanctuary_hat", ArmorMaterials.NETHERITE));
     public static final Item DUCK_HAT = register("duck_hat", (settings) -> new DuckHat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), ArmorMaterials.DIAMOND, ModEntityTypes.DUCK));
     public static final Item NETHERITE_DUCK_HAT = register("netherite_duck_hat", (settings) -> new DuckHat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), ArmorMaterials.NETHERITE, ModEntityTypes.NETHERITE_DUCK));
-    public static final Item S5_SPAWN_HAT = register("s5_spawn_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "s5_spawn_hat", ArmorMaterials.DIAMOND));
+    public static final Item S5_SPAWN_HAT = register("s5_spawn_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "s5_spawn_hat", ArmorMaterials.DIAMOND)); //S5 starter base participation
     public static final Item NETHERITE_S5_SPAWN_HAT = register("netherite_s5_spawn_hat", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "s5_spawn_hat", ArmorMaterials.NETHERITE));
     public static final Item WINDMILL_HOUSE_HAT = register("windmill_house_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "windmill_house_hat", ArmorMaterials.DIAMOND));
     public static final Item NETHERITE_WINDMILL_HOUSE_HAT = register("netherite_windmill_house_hat", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "windmill_house_hat", ArmorMaterials.NETHERITE));
@@ -63,9 +63,28 @@ public class ModItems {
     public static final Item NETHERITE_TAG_THIRD = register("netherite_tag_third", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "tag_third", ArmorMaterials.NETHERITE));
     public static final Item TAG_PARTICIPATION = register("tag_participation", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "tag_participation", ArmorMaterials.DIAMOND));
     public static final Item NETHERITE_TAG_PARTICIPATION = register("netherite_tag_participation", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "tag_participation", ArmorMaterials.NETHERITE));
+    public static final Item REDSTONE_STAFF = register("redstone_staff", settings -> new RedstoneStaff(settings.rarity(Rarity.UNCOMMON).sword(ToolMaterial.DIAMOND, 3.0F, -2.4F)));
+    public static final Item NETHERITE_REDSTONE_STAFF = register("netherite_redstone_staff", settings -> new RedstoneStaff(settings.rarity(Rarity.EPIC).sword(ToolMaterial.NETHERITE, 3.0F, -2.4F).translationKey("item.spooncraftadditions.redstone_staff")));
+    public static final Item REDSTONE_HAT = register("redstone_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "redstone_hat", ArmorMaterials.DIAMOND));
+    public static final Item NETHERITE_REDSTONE_HAT = register("netherite_redstone_hat", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "redstone_hat", ArmorMaterials.NETHERITE));
 
     public static final Item DRAGON_WINGS = register("dragon_wings", (settings -> new SimplePolymerItem(settings.maxDamage(432).rarity(Rarity.EPIC).component(DataComponentTypes.GLIDER, Unit.INSTANCE).component(DataComponentTypes.EQUIPPABLE, EquippableComponent.builder(EquipmentSlot.CHEST).equipSound(SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA).model(ModEquipmentAssetKeys.DRAGON_WINGS).damageOnHurt(false).build()).repairable(Items.PHANTOM_MEMBRANE), Items.ELYTRA, true)));
     public static final Item KIRBY_WINGS = register("kirby_wings", (settings -> new SimplePolymerItem(settings.maxDamage(432).rarity(Rarity.EPIC).component(DataComponentTypes.GLIDER, Unit.INSTANCE).component(DataComponentTypes.EQUIPPABLE, EquippableComponent.builder(EquipmentSlot.CHEST).equipSound(SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA).model(ModEquipmentAssetKeys.KIRBY_WINGS).damageOnHurt(false).build()).repairable(Items.PHANTOM_MEMBRANE), Items.ELYTRA, true)));
+
+    public static final Item EGG_BASKET = register("egg_basket", EggBasket::new);
+    public static final Item EGG_MUMBO = register("eggmumbo", (settings -> new PolymerBlockItem(ModBlocks.EGG_MUMBO, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG1 = register("egg1", (settings -> new PolymerBlockItem(ModBlocks.EGG1, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG11 = register("egg11", (settings -> new PolymerBlockItem(ModBlocks.EGG11, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG12 = register("egg12", (settings -> new PolymerBlockItem(ModBlocks.EGG12, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG13 = register("egg13", (settings -> new PolymerBlockItem(ModBlocks.EGG13, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG2 = register("egg2", (settings -> new PolymerBlockItem(ModBlocks.EGG2, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG21 = register("egg21", (settings -> new PolymerBlockItem(ModBlocks.EGG21, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG22 = register("egg22", (settings -> new PolymerBlockItem(ModBlocks.EGG22, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG23 = register("egg23", (settings -> new PolymerBlockItem(ModBlocks.EGG23, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG3 = register("egg3", (settings -> new PolymerBlockItem(ModBlocks.EGG3, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG31 = register("egg31", (settings -> new PolymerBlockItem(ModBlocks.EGG31, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG32 = register("egg32", (settings -> new PolymerBlockItem(ModBlocks.EGG32, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
+    public static final Item EGG33 = register("egg33", (settings -> new PolymerBlockItem(ModBlocks.EGG33, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
 
     public static final Item MUSIC_DISC_CACTUS_STRING_SAND = register("music_disc_cactus_string_sand", (settings) -> new MusicDisc(settings, "cactus_string_sand", ModJukeboxSongs.CACTUS_STRING_SAND));
     public static final Item MUSIC_DISC_CORRIDOR = register("music_disc_corridor", (settings) -> new MusicDisc(settings, "corridor", ModJukeboxSongs.CORRIDOR));
@@ -105,24 +124,41 @@ public class ModItems {
                     entries.add(SPOONCRAFT_SPOON);
                     entries.add(SPOONCRAFT_SWORD);
                     entries.add(SLIME_BUCKET);
-                    entries.add(SKYBLOCK_HAT);
                     entries.add(SHRINK_RAY);
+
+                    entries.add(GIFT_BOX);
+
+                    entries.add(CLAIM_SCROLL);
+                    entries.add(CLAIM_CHECKER);
+
+                    entries.add(SKYBLOCK_HAT);
                     entries.add(BALTOP_HAT);
                     entries.add(ARROW_HAT);
                     entries.add(SKYBLOCK_STARTER_BASE_HAT);
                     entries.add(DEEP_VOID_SANCTUARY_HAT);
-                    entries.add(S5_SPAWN_HAT);
+                    entries.add(DUCK_HAT);
+                    entries.add(S5_SPAWN_HAT); // S5 Starter base participation
                     entries.add(WINDMILL_HOUSE_HAT);
                     entries.add(TAG_FIRST);
                     entries.add(TAG_SECOND);
                     entries.add(TAG_THIRD);
                     entries.add(TAG_PARTICIPATION);
+                    entries.add(REDSTONE_STAFF);
+                    entries.add(REDSTONE_HAT);
+
                     entries.add(DRAGON_WINGS);
                     entries.add(KIRBY_WINGS);
-                    entries.add(DUCK_HAT);
-                    entries.add(GIFT_BOX);
-                    entries.add(CLAIM_SCROLL);
-                    entries.add(CLAIM_CHECKER);
+                })).build()
+        );
+
+        PolymerItemGroupUtils.registerPolymerItemGroup(Identifier.of(SpooncraftAdditions.ID, "discs"), ItemGroup.create(ItemGroup.Row.BOTTOM, -1)
+                .icon(() -> {
+                    ItemStack item = new ItemStack(Items.PAPER);
+                    item.set(DataComponentTypes.ITEM_MODEL, Identifier.of(SpooncraftAdditions.ID, "music_disc_dibby_dibby_diamonds"));
+                    return item;
+                })
+                .displayName(Text.translatable("itemGroup.spooncraftadditions.discs"))
+                .entries(((context, entries) -> {
                     entries.add(MUSIC_DISC_CACTUS_STRING_SAND);
                     entries.add(MUSIC_DISC_CORRIDOR);
                     entries.add(MUSIC_DISC_DIABOLICAL);
@@ -142,6 +178,27 @@ public class ModItems {
                     entries.add(MUSIC_DISC_THE_SUPER_WEAPON);
                     entries.add(MUSIC_DISC_TINY_TIMELAPSE);
                     entries.add(MUSIC_DISC_WATER_SOURCE);
+                })).build()
+        );
+
+        PolymerItemGroupUtils.registerPolymerItemGroup(Identifier.of(SpooncraftAdditions.ID, "eggs"), ItemGroup.create(ItemGroup.Row.BOTTOM, -1)
+                .icon(() -> new ItemStack(ModItems.EGG_MUMBO))
+                .displayName(Text.translatable("itemGroup.spooncraftadditions.eggs"))
+                .entries(((context, entries) -> {
+                    entries.add(EGG_BASKET);
+                    entries.add(EGG_MUMBO);
+                    entries.add(EGG1);
+                    entries.add(EGG11);
+                    entries.add(EGG12);
+                    entries.add(EGG13);
+                    entries.add(EGG2);
+                    entries.add(EGG21);
+                    entries.add(EGG22);
+                    entries.add(EGG23);
+                    entries.add(EGG3);
+                    entries.add(EGG31);
+                    entries.add(EGG32);
+                    entries.add(EGG33);
                 })).build()
         );
     }

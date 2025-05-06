@@ -1,0 +1,6 @@
+{
+    "parent": "spooncraftadditions:item/eggs/generic",
+    "textures": {
+      "0": "spooncraftadditions:item/eggs/3-1"
+    }
+}

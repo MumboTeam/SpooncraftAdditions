@@ -38,7 +38,7 @@ public class PlayerRewards {
     }
 
     public void claimReward(Reward reward) {
-        this.player.giveItemStack(reward.item().getDefaultStack());
+        this.player.giveItemStack(reward.stack());
         this.claimedRewards.rewards.add(Rewards.getIdentifier(reward));
 
         PlayerDataApi.setCustomDataFor(this.player, Rewards.CLAIMED_REWARDS_STORAGE, this.claimedRewards);
