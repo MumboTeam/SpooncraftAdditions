@@ -19,7 +19,7 @@ public record Reward(
 
     @Override
     public ItemStack stack() {
-        return stack;
+        return stack.copy();
     }
 
     @Override
