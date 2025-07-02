@@ -90,6 +90,6 @@ public class SlimeBucket extends Item implements PolymerItem {
 
     private boolean inSlimeChunk(ServerPlayerEntity player) {
         ChunkPos chunkPos = player.getChunkPos();
-        return ChunkRandom.getSlimeRandom(chunkPos.x, chunkPos.z, player.getServerWorld().getSeed(), 987234911L).nextInt(10) == 0;
+        return ChunkRandom.getSlimeRandom(chunkPos.x, chunkPos.z, player.getWorld().getSeed(), 987234911L).nextInt(10) == 0;
     }
 }

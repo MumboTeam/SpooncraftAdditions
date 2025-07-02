@@ -19,8 +19,8 @@ public abstract class ShrinkRayTimer extends PlayerEntity implements ShrinkRayTi
     @Unique
     private int ticksUntilBigAgain = -1;
 
-    public ShrinkRayTimer(World world, BlockPos pos, float yaw, GameProfile gameProfile) {
-        super(world, pos, yaw, gameProfile);
+    public ShrinkRayTimer(World world, GameProfile gameProfile) {
+        super(world, gameProfile);
     }
 
     @Inject(method = "tick", at = @At("TAIL"))

@@ -45,7 +45,7 @@ public class ShrinkRay extends Item implements PolymerItem {
 
             while (!pos.isInRange(targetPos, 0.5)) {
                 pos = pos.lerp(targetPos, 0.1);
-                player.getServerWorld().spawnParticles(effect, pos.x, pos.y, pos.z, 1, 0, 0, 0, 0);
+                player.getWorld().spawnParticles(effect, pos.x, pos.y, pos.z, 1, 0, 0, 0, 0);
             }
 
             return ActionResult.SUCCESS;

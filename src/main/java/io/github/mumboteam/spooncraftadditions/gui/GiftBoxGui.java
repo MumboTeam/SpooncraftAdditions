@@ -81,18 +81,18 @@ public class GiftBoxGui extends LayeredGui {
         ItemStack rocket = Items.FIREWORK_ROCKET.getDefaultStack();
         rocket.set(DataComponentTypes.FIREWORKS, new FireworksComponent(1, List.of(explosion)));
 
-        FireworkRocketEntity fireworkRocketEntity = new FireworkRocketEntity(this.player.getServerWorld(),
+        FireworkRocketEntity fireworkRocketEntity = new FireworkRocketEntity(this.player.getWorld(),
                 this.pos.getX() + 0.5,
                 this.pos.getY() + 0.5,
                 this.pos.getZ() + 0.5,
                 rocket
         );
-        this.player.getServerWorld().spawnEntity(fireworkRocketEntity);
+        this.player.getWorld().spawnEntity(fireworkRocketEntity);
 
         refreshPages();
         this.setTitle(Text.empty().append(Text.literal("-1." + this.rewardsTabTitle).setStyle(Style.EMPTY.withColor(0xFFFFFF).withFont(Identifier.of(SpooncraftAdditions.ID, "gui")))));
 
-        if (this.getPlayer().getServerWorld().getBlockEntity(this.pos) instanceof GiftBoxBlockEntity blockEntity) {
+        if (this.getPlayer().getWorld().getBlockEntity(this.pos) instanceof GiftBoxBlockEntity blockEntity) {
             blockEntity.clearCount(this.getPlayer().networkHandler);
         }
     }
