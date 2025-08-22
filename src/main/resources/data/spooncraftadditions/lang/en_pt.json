@@ -31,7 +31,7 @@
     "item.spooncraftadditions.tag_participation": "Tag",
     "item.spooncraftadditions.tag_participation.desc": "Given to the sailors participatin' in Season 5's tag!",
     "item.spooncraftadditions.pirate_hat": "Pirate Tricorn",
-    "item.spooncraftadditions.pirate_hat.desc": "Awarded for buildin' a minigame in Season 5!"
+    "item.spooncraftadditions.pirate_hat.desc": "Awarded for buildin' a minigame in Season 5!",
     "item.spooncraftadditions.dragon_wings": "Dragon Wings",
     "item.spooncraftadditions.kirby_wings": "Kirby Wings",
     "jukebox_song.spooncraftadditions.cactus_string_sand": "Mumbo Jumbo - Cactus String Sand",
@@ -93,5 +93,5 @@
     "item.spooncraftadditions.egg_basket": "Egg Basket",
     "item.spooncraftadditions.egg_basket.desc": "Awarded for eggcelent searchin' skills in Season 5's Egg Hunt!",
     "itemGroup.spooncraftadditions.eggs": "Eggs",
-    "itemGroup.spooncraftadditions.discs": "Mumbo's Music",
+    "itemGroup.spooncraftadditions.discs": "Mumbo's Music"
 }
