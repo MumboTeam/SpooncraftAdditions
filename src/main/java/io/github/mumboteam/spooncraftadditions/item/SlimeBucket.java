@@ -79,7 +79,7 @@ public class SlimeBucket extends Item implements PolymerItem {
                 slime.setSize(1, true);
                 slime.setPos(pos.x, pos.y, pos.z);
                 slime.setCustomName(stack.get(DataComponentTypes.CUSTOM_NAME));
-                world.emitGameEvent(player, GameEvent.ENTITY_PLACE, slime.getPos());
+                world.emitGameEvent(player, GameEvent.ENTITY_PLACE, slime.getEntityPos());
                 world.spawnEntity(slime);
             }
 
@@ -90,6 +90,6 @@ public class SlimeBucket extends Item implements PolymerItem {
 
     private boolean inSlimeChunk(ServerPlayerEntity player) {
         ChunkPos chunkPos = player.getChunkPos();
-        return ChunkRandom.getSlimeRandom(chunkPos.x, chunkPos.z, player.getWorld().getSeed(), 987234911L).nextInt(10) == 0;
+        return ChunkRandom.getSlimeRandom(chunkPos.x, chunkPos.z, player.getEntityWorld().getSeed(), 987234911L).nextInt(10) == 0;
     }
 }

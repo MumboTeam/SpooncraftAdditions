@@ -20,6 +20,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Style;
+import net.minecraft.text.StyleSpriteSource;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -28,6 +29,8 @@ import net.minecraft.util.math.BlockPos;
 import java.util.List;
 
 public class GiftBoxGui extends LayeredGui {
+    StyleSpriteSource.Font GUI_FONT = new StyleSpriteSource.Font(Identifier.of(SpooncraftAdditions.ID, "gui"));
+
     private final BlockPos pos;
     private final ServerPlayerEntity player;
     LayerView open;
@@ -81,18 +84,18 @@ public class GiftBoxGui extends LayeredGui {
         ItemStack rocket = Items.FIREWORK_ROCKET.getDefaultStack();
         rocket.set(DataComponentTypes.FIREWORKS, new FireworksComponent(1, List.of(explosion)));
 
-        FireworkRocketEntity fireworkRocketEntity = new FireworkRocketEntity(this.player.getWorld(),
+        FireworkRocketEntity fireworkRocketEntity = new FireworkRocketEntity(this.player.getEntityWorld(),
                 this.pos.getX() + 0.5,
                 this.pos.getY() + 0.5,
                 this.pos.getZ() + 0.5,
                 rocket
         );
-        this.player.getWorld().spawnEntity(fireworkRocketEntity);
+        this.player.getEntityWorld().spawnEntity(fireworkRocketEntity);
 
         refreshPages();
-        this.setTitle(Text.empty().append(Text.literal("-1." + this.rewardsTabTitle).setStyle(Style.EMPTY.withColor(0xFFFFFF).withFont(Identifier.of(SpooncraftAdditions.ID, "gui")))));
+        this.setTitle(Text.empty().append(Text.literal("-1." + this.rewardsTabTitle).setStyle(Style.EMPTY.withColor(0xFFFFFF).withFont(GUI_FONT))));
 
-        if (this.getPlayer().getWorld().getBlockEntity(this.pos) instanceof GiftBoxBlockEntity blockEntity) {
+        if (this.getPlayer().getEntityWorld().getBlockEntity(this.pos) instanceof GiftBoxBlockEntity blockEntity) {
             blockEntity.clearCount(this.getPlayer().networkHandler);
         }
     }
@@ -141,7 +144,7 @@ public class GiftBoxGui extends LayeredGui {
             this.removeLayer(this.open);
         }
         this.open = this.addLayer(tab, 0, 1);
-        this.setTitle(Text.empty().append(Text.literal("-1." + title).setStyle(Style.EMPTY.withColor(0xFFFFFF).withFont(Identifier.of(SpooncraftAdditions.ID, "gui")))));
+        this.setTitle(Text.empty().append(Text.literal("-1." + title).setStyle(Style.EMPTY.withColor(0xFFFFFF).withFont(GUI_FONT))));
         this.getPlayer().playSoundToPlayer(SoundEvents.UI_BUTTON_CLICK.value(), SoundCategory.MASTER, 0.8f, 1);
     }
 }

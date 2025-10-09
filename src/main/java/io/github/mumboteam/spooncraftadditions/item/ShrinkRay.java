@@ -40,12 +40,12 @@ public class ShrinkRay extends Item implements PolymerItem {
             user.playSoundToPlayer(SoundEvent.of(Identifier.of(SpooncraftAdditions.ID, "item.shrink_ray")), SoundCategory.PLAYERS, 1.0f, 1.0f);
 
             ParticleEffect effect = new DustParticleEffect(ColorHelper.fromFloats(1, 0, 0.5f, 1), 2.0f);
-            Vec3d pos = user.getPos().add(0, 1.3, 0);
-            Vec3d targetPos = player.getPos();
+            Vec3d pos = user.getEntityPos().add(0, 1.3, 0);
+            Vec3d targetPos = player.getEntityPos();
 
             while (!pos.isInRange(targetPos, 0.5)) {
                 pos = pos.lerp(targetPos, 0.1);
-                player.getWorld().spawnParticles(effect, pos.x, pos.y, pos.z, 1, 0, 0, 0, 0);
+                player.getEntityWorld().spawnParticles(effect, pos.x, pos.y, pos.z, 1, 0, 0, 0, 0);
             }
 
             return ActionResult.SUCCESS;

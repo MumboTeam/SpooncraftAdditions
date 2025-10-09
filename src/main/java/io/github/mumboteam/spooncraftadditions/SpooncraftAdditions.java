@@ -13,10 +13,9 @@ import io.github.mumboteam.spooncraftadditions.registry.ModItems;
 import io.github.mumboteam.spooncraftadditions.reward.Rewards;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
-import net.minecraft.resource.ResourceManager;
+import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
 import net.minecraft.resource.ResourceType;
+import net.minecraft.resource.SynchronousResourceReloader;
 import net.minecraft.util.Identifier;
 
 import org.slf4j.Logger;
@@ -43,16 +42,6 @@ public class SpooncraftAdditions implements ModInitializer {
             IsItGarethsFaultCommand.register(dispatcher);
         });
 
-        ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
-            @Override
-            public Identifier getFabricId() {
-                return Identifier.of(SpooncraftAdditions.ID, "reward");
-            }
-
-            @Override
-            public void reload(ResourceManager manager) {
-                Rewards.reload(manager);
-            }
-        });
+        ResourceLoader.get(ResourceType.SERVER_DATA).registerReloader(Identifier.of(SpooncraftAdditions.ID, "reward"), (SynchronousResourceReloader) Rewards::reload);
     }
 }
