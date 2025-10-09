@@ -93,5 +93,6 @@
   "commands.forgivegareth.success": "%s has forgiven Gareth for the %d%s time!",
   "commands.blamegareth.cooldown": "You're doing that too quickly!",
   "commands.isitgarethsfault.success": "Blamed: %d time%s\nForgiven: %d time%s\nVerdict: %s",
-  "gui.spooncraftadditions.giftbox.claim": "→ Click to claim reward!"
+  "gui.spooncraftadditions.giftbox.claim": "→ Click to claim reward!",
+  "subtitles.entity.duck.quack": "Duck Boat quacks"
 }

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:netherite_ingot",
+  "base": "spooncraftadditions:duck_hat",
+  "result": {
+    "count": 1,
+    "id": "spooncraftadditions:netherite_duck_hat"
+  },
+  "template": "minecraft:netherite_upgrade_smithing_template"
+}
