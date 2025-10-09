@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "spooncraftadditions:item/kirby_wings_broken"
+    "layer0": "spooncraftadditions:item/broken_kirby_wings"
   }
 }
