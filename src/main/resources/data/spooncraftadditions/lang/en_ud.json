@@ -81,5 +81,18 @@
     "commands.forgivegareth.success": "¡ǝɯᴉʇ %d%s ǝɥʇ ɹoɟ ɥʇǝɹɐ⅁ uǝʌᴉᵷɹoɟ sɐɥ %s",
     "commands.blamegareth.cooldown": "¡ʎꞁʞɔᴉnb ooʇ ʇɐɥʇ ᵷuᴉop ǝɹ,no⅄",
     "commands.isitgarethsfault.success": "%s :ʇɔᴉpɹǝɅ\n%sǝɯᴉʇ %d :uǝʌᴉᵷɹoℲ\n%sǝɯᴉʇ %d :pǝɯɐꞁᗺ",
-    "gui.spooncraftadditions.giftbox.claim": "¡pɹɐʍǝɹ ɯᴉɐꞁɔ oʇ ʞɔᴉꞁƆ →"
+    "gui.spooncraftadditions.giftbox.claim": "¡pɹɐʍǝɹ ɯᴉɐꞁɔ oʇ ʞɔᴉꞁƆ →",
+    "item.spooncraftadditions.shrink_ray": "ʎɐᴚ ʞuᴉɹɥS",
+    "item.spooncraftadditions.redstone_staff": "ɟɟɐʇS ǝuoʇspǝᴚ",
+    "item.spooncraftadditions.redstone_staff.desc": "¡uoᴉʇᴉʇǝdɯoƆ ǝuoʇspǝᴚ s,5 uosɐǝS uᴉ ᵷuᴉʇɐdᴉɔᴉʇɹɐd ɹoɟ pǝpɹɐʍⱯ",
+    "item.spooncraftadditions.redstone_hat": "ʇɐH ǝuoʇspǝᴚ",
+    "item.spooncraftadditions.redstone_hat.desc": "¡uoᴉʇᴉʇǝdɯoƆ ǝuoʇspǝᴚ s,5 uosɐǝS ᵷuᴉuuᴉʍ ɹoɟ pǝpɹɐʍⱯ",
+    "item.spooncraftadditions.egg": "ᵷᵷƎ",
+    "item.spooncraftadditions.egg_basket": "ʇǝʞsɐᗺ ᵷᵷƎ",
+    "item.spooncraftadditions.egg_basket.desc": "¡ʇunH ᵷᵷƎ s,5 uosɐǝS uᴉ sꞁꞁᴉʞs ᵷuᴉɥɔɹɐǝs ʇuǝꞁǝɔᵷᵷǝ ɹoɟ pǝpɹɐʍⱯ",
+    "item.spooncraftadditions.pirate_hat": "ʇɐH ǝʇɐɹᴉԀ",
+    "item.spooncraftadditions.pirate_hat.desc": "¡5 uosɐǝS uᴉ ǝɯɐᵷᴉuᴉɯ ɐ ᵷuᴉpꞁᴉnq ɹoɟ pǝpɹɐʍⱯ",
+    "itemGroup.spooncraftadditions.eggs": "sᵷᵷƎ",
+    "itemGroup.spooncraftadditions.discs": "ɔᴉsnW s,oqɯnW",
+    "subtitles.entity.duck.quack": "sʞɔɐnb ʇɐoᗺ ʞɔnᗡ"
 }

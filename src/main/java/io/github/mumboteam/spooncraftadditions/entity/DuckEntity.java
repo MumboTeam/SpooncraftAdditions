@@ -74,11 +74,9 @@ public class DuckEntity extends BoatEntity implements PolymerEntity {
             if (player.getPlayerInput().right()) {
                 this.updatePositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw() + 5.0F, this.getPitch());
             }
-            if (player.getPlayerInput().jump()) {
-                if (this.quackCooldown == 0) {
-                    this.playSound(SoundEvent.of(Identifier.of(SpooncraftAdditions.ID, "entity.duck.quack")), 1.0F, 1.0F);
-                    this.quackCooldown = 20;
-                }
+            if (player.getPlayerInput().jump() && this.quackCooldown == 0) {
+                this.playSound(SoundEvent.of(Identifier.of(SpooncraftAdditions.ID, "entity.duck.quack")), 1.0F, 1.0F);
+                this.quackCooldown = 20;
             }
 
             if (this.quackCooldown > 0) {quackCooldown--;}

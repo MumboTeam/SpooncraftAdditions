@@ -93,5 +93,6 @@
     "item.spooncraftadditions.egg_basket": "Egg Basket",
     "item.spooncraftadditions.egg_basket.desc": "Awarded for eggcelent searchin' skills in Season 5's Egg Hunt!",
     "itemGroup.spooncraftadditions.eggs": "Eggs",
-    "itemGroup.spooncraftadditions.discs": "Mumbo's Music"
+    "itemGroup.spooncraftadditions.discs": "Mumbo's Shanties",
+    "subtitles.entity.duck.quack": "Duck Boat quacks"
 }
