@@ -30,6 +30,6 @@ public class DuckHat extends BoatItem implements PolymerItem {
 
     @Override
     public Item getPolymerItem(ItemStack itemStack, PacketContext context) {
-        return Items.PAPER;
+        return Items.OAK_BOAT;
     }
 }

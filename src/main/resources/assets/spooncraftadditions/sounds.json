@@ -18,5 +18,6 @@
   "music_disc.the_super_weapon": { "sounds": ["spooncraftadditions:records/the_super_weapon"]},
   "music_disc.tiny_timelapse": { "sounds": ["spooncraftadditions:records/tiny_timelapse"]},
   "music_disc.water_source": { "sounds": ["spooncraftadditions:records/water_source"]},
-  "item.shrink_ray": { "sounds": ["spooncraftadditions:item/shrink_ray"]}
+  "item.shrink_ray": { "sounds": ["spooncraftadditions:item/shrink_ray"]},
+  "entity.duck.quack": { "sounds": ["spooncraftadditions:entity/duck/quack"], "subtitle": "subtitles.entity.duck.quack"}
 }

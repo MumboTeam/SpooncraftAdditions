@@ -5,7 +5,9 @@
 	"name": "Spooncraft Additions",
 	"description": "Custom content for Spooncraft, the official Minecraft server of the Mumbo Jumbo Discord",
 	"authors": [
-		"JoeGaming"
+		"JoeGaming",
+        {"name": "GoldenRedstone", "contact": {"homepage": "https://github.com/PointerRain"}},
+        "FortP"
 	],
 	"contact": {
 		"homepage": "https://mumboteam.github.io/spooncraft-docs/",
