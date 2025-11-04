@@ -1,6 +1,7 @@
 package io.github.mumboteam.spooncraftadditions.item;
 
 import eu.pb4.polymer.core.api.item.PolymerItem;
+import io.github.mumboteam.spooncraftadditions.component.ModComponents;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.EquippableComponent;
 import net.minecraft.entity.EquipmentSlot;
@@ -24,6 +25,9 @@ public class Hat extends Item implements PolymerItem {
     @Override
     public void modifyClientTooltip(List<Text> tooltip, ItemStack stack, PacketContext context) {
         tooltip.addFirst(Text.translatable("item.spooncraftadditions." + hat +".desc").formatted(Formatting.GRAY));
+        if (stack.getOrDefault(ModComponents.DISABLED, false) == true) {
+            tooltip.addLast(Text.translatable("item.spooncraftadditions.hat.disabled").formatted(Formatting.RED));
+        }
     }
 
     @Override
