@@ -24,13 +24,13 @@ public class Rewards {
     public static void reload(ResourceManager manager) {
         REWARDS.clear();
 
-        for(Map.Entry<Identifier, Resource> resource : manager.findResources("reward", path -> path.toString().endsWith(".json")).entrySet()) {
-            try(BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getValue().getInputStream()))) {
+        for (Map.Entry<Identifier, Resource> resource : manager.findResources("reward", path -> path.toString().endsWith(".json")).entrySet()) {
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getValue().getInputStream()))) {
                 JsonElement json = JsonParser.parseReader(reader);
                 DataResult<Reward> result = Reward.CODEC.parse(JsonOps.INSTANCE, json);
                 REWARDS.register(resource.getKey(), result.getOrThrow());
 
-            } catch(Exception e) {
+            } catch (Exception e) {
                 SpooncraftAdditions.LOGGER.error("Error occurred while loading resource json {}", resource.getKey().toString(), e);
             }
         }

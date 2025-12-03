@@ -63,8 +63,6 @@ public class ModItems {
     public static final Item NETHERITE_TAG_THIRD = register("netherite_tag_third", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "tag_third", ArmorMaterials.NETHERITE));
     public static final Item TAG_PARTICIPATION = register("tag_participation", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "tag_participation", ArmorMaterials.DIAMOND));
     public static final Item NETHERITE_TAG_PARTICIPATION = register("netherite_tag_participation", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "tag_participation", ArmorMaterials.NETHERITE));
-    public static final Item REDSTONE_STAFF = register("redstone_staff", settings -> new RedstoneStaff(settings.rarity(Rarity.UNCOMMON).sword(ToolMaterial.DIAMOND, 3.0F, -2.4F)));
-    public static final Item NETHERITE_REDSTONE_STAFF = register("netherite_redstone_staff", settings -> new RedstoneStaff(settings.rarity(Rarity.EPIC).sword(ToolMaterial.NETHERITE, 3.0F, -2.4F).translationKey("item.spooncraftadditions.redstone_staff")));
     public static final Item REDSTONE_HAT = register("redstone_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "redstone_hat", ArmorMaterials.DIAMOND));
     public static final Item NETHERITE_REDSTONE_HAT = register("netherite_redstone_hat", (settings) -> new Hat(settings.fireproof().rarity(Rarity.EPIC).maxDamage(EquipmentType.HELMET.getMaxDamage(37)), "redstone_hat", ArmorMaterials.NETHERITE));
     public static final Item PIRATE_HAT = register("pirate_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).maxDamage(EquipmentType.HELMET.getMaxDamage(33)), "pirate_hat", ArmorMaterials.DIAMOND));
@@ -72,6 +70,11 @@ public class ModItems {
 
     public static final Item DRAGON_WINGS = register("dragon_wings", (settings -> new SimplePolymerItem(settings.maxDamage(432).rarity(Rarity.EPIC).component(DataComponentTypes.GLIDER, Unit.INSTANCE).component(DataComponentTypes.EQUIPPABLE, EquippableComponent.builder(EquipmentSlot.CHEST).equipSound(SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA).model(ModEquipmentAssetKeys.DRAGON_WINGS).damageOnHurt(false).build()).repairable(Items.PHANTOM_MEMBRANE), Items.ELYTRA, true)));
     public static final Item KIRBY_WINGS = register("kirby_wings", (settings -> new SimplePolymerItem(settings.maxDamage(432).rarity(Rarity.EPIC).component(DataComponentTypes.GLIDER, Unit.INSTANCE).component(DataComponentTypes.EQUIPPABLE, EquippableComponent.builder(EquipmentSlot.CHEST).equipSound(SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA).model(ModEquipmentAssetKeys.KIRBY_WINGS).damageOnHurt(false).build()).repairable(Items.PHANTOM_MEMBRANE), Items.ELYTRA, true)));
+
+
+    public static final Item REDSTONE_STAFF = register("redstone_staff", settings -> new RedstoneStaff(settings.rarity(Rarity.UNCOMMON).sword(ToolMaterial.DIAMOND, 3.0F, -2.4F)));
+    public static final Item NETHERITE_REDSTONE_STAFF = register("netherite_redstone_staff", settings -> new RedstoneStaff(settings.rarity(Rarity.EPIC).sword(ToolMaterial.NETHERITE, 3.0F, -2.4F).translationKey("item.spooncraftadditions.redstone_staff")));
+    public static final Item TETRIO_STICK = register("tetrio_stick", TetrioStick::new);
 
     public static final Item EGG_BASKET = register("egg_basket", EggBasket::new);
     public static final Item EGG_MUMBO = register("eggmumbo", (settings -> new PolymerBlockItem(ModBlocks.EGG_MUMBO, settings.translationKey("item.spooncraftadditions.egg").maxCount(64))));
@@ -145,12 +148,14 @@ public class ModItems {
                     entries.add(TAG_SECOND);
                     entries.add(TAG_THIRD);
                     entries.add(TAG_PARTICIPATION);
-                    entries.add(REDSTONE_STAFF);
                     entries.add(REDSTONE_HAT);
                     entries.add(PIRATE_HAT);
 
                     entries.add(DRAGON_WINGS);
                     entries.add(KIRBY_WINGS);
+
+                    entries.add(REDSTONE_STAFF);
+                    entries.add(TETRIO_STICK);
                 })).build()
         );
 
