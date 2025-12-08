@@ -17,6 +17,12 @@ public class ModComponents {
             ComponentType.<Boolean>builder().codec(Codec.BOOL).build()
     );
 
+    public static final ComponentType<Boolean> DISABLED = register(
+            Identifier.of(SpooncraftAdditions.ID, "disabled"),
+            ComponentType.<Boolean>builder().codec(Codec.BOOL).build()
+    );
+
+
     private static <T> ComponentType<T> register(Identifier id, ComponentType<T> entry) {
         ComponentType<T> componentType = Registry.register(Registries.DATA_COMPONENT_TYPE, id, entry);
         PolymerComponent.registerDataComponent(componentType);

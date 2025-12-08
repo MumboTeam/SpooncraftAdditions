@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "AbstractBoatEntityAccessor",
+    "ItemStackMixin",
     "Schema1460Mixin",
     "ShrinkRayTimer",
     "SlimeMixin"
