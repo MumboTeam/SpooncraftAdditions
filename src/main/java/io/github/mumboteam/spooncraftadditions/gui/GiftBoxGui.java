@@ -15,6 +15,7 @@ import net.minecraft.component.type.FireworksComponent;
 import net.minecraft.entity.projectile.FireworkRocketEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.network.packet.s2c.play.PlaySoundS2CPacket;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -78,7 +79,7 @@ public class GiftBoxGui extends LayeredGui {
 
     private void claimReward(Reward reward) {
         this.playerRewards.claimReward(reward);
-        this.getPlayer().playSoundToPlayer(SoundEvents.BLOCK_NOTE_BLOCK_CHIME.value(), SoundCategory.MASTER, 1, 1);
+        this.player.networkHandler.sendPacket(new PlaySoundS2CPacket(SoundEvents.BLOCK_NOTE_BLOCK_CHIME, SoundCategory.MASTER, this.player.getX(), this.player.getY(), this.player.getZ(), 1, 1, this.player.getRandom().nextLong()));
 
         FireworkExplosionComponent explosion = new FireworkExplosionComponent(FireworkExplosionComponent.Type.LARGE_BALL, IntList.of(0xea625e), IntList.of(0x4cb679), true, true);
         ItemStack rocket = Items.FIREWORK_ROCKET.getDefaultStack();
@@ -95,8 +96,8 @@ public class GiftBoxGui extends LayeredGui {
         refreshPages();
         this.setTitle(Text.empty().append(Text.literal("-1." + this.rewardsTabTitle).setStyle(Style.EMPTY.withColor(0xFFFFFF).withFont(GUI_FONT))));
 
-        if (this.getPlayer().getEntityWorld().getBlockEntity(this.pos) instanceof GiftBoxBlockEntity blockEntity) {
-            blockEntity.clearCount(this.getPlayer().networkHandler);
+        if (this.player.getEntityWorld().getBlockEntity(this.pos) instanceof GiftBoxBlockEntity blockEntity) {
+            blockEntity.clearCount(this.player.networkHandler);
         }
     }
 
@@ -145,6 +146,5 @@ public class GiftBoxGui extends LayeredGui {
         }
         this.open = this.addLayer(tab, 0, 1);
         this.setTitle(Text.empty().append(Text.literal("-1." + title).setStyle(Style.EMPTY.withColor(0xFFFFFF).withFont(GUI_FONT))));
-        this.getPlayer().playSoundToPlayer(SoundEvents.UI_BUTTON_CLICK.value(), SoundCategory.MASTER, 0.8f, 1);
     }
 }

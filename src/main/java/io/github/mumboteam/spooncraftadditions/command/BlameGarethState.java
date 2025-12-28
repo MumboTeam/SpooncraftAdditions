@@ -29,8 +29,8 @@ public class BlameGarethState extends PersistentState {
 
     private static final PersistentStateType<BlameGarethState> STATE_TYPE = new PersistentStateType<>(
             SpooncraftAdditions.ID + "_blamegareth",
-            (context) -> new BlameGarethState(),
-            context -> NbtCompound.CODEC.xmap(
+            BlameGarethState::new,
+            NbtCompound.CODEC.xmap(
                     BlameGarethState::createFromNbt,
                     state -> state.writeNbt(new NbtCompound())
             ),

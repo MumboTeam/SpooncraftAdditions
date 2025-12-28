@@ -3,43 +3,22 @@ package io.github.mumboteam.spooncraftadditions.item;
 import eu.pb4.polymer.core.api.item.PolymerItem;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.AttributeModifiersComponent;
-import net.minecraft.component.type.ItemEnchantmentsComponent;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.EntityAttachments;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.registry.*;
-import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.network.packet.s2c.play.EntityVelocityUpdateS2CPacket;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 import xyz.nucleoid.packettweaker.PacketContext;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.component.type.ItemEnchantmentsComponent;
-import net.minecraft.component.type.ItemEnchantmentsComponent.Builder;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.Registries;
 
 
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
 
 public class TetrioStick extends Item implements PolymerItem {
     public TetrioStick(Settings settings) {
@@ -69,10 +48,12 @@ public class TetrioStick extends Item implements PolymerItem {
         double yaw = Math.toRadians(attacker.getYaw());
         double x = -Math.sin(yaw) * strength;
         double z = Math.cos(yaw) * strength;
-        double y = 0.1;
+        double y = 0.3;
 
         target.addVelocity(x, y, z);
-        target.velocityModified = true;
+        if (target instanceof ServerPlayerEntity player) {
+            player.networkHandler.sendPacket(new EntityVelocityUpdateS2CPacket(player));
+        }
     }
 
     @Override
