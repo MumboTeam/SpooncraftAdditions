@@ -1,6 +1,7 @@
 package io.github.mumboteam.spooncraftadditions.item;
 
 import eu.pb4.polymer.core.api.item.PolymerItem;
+import io.github.mumboteam.spooncraftadditions.component.ModComponents;
 import io.github.mumboteam.spooncraftadditions.entity.DuckEntity;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.EquippableComponent;
@@ -19,6 +20,7 @@ import xyz.nucleoid.packettweaker.PacketContext;
 import java.util.List;
 
 public class DuckHat extends BoatItem implements PolymerItem {
+
     public DuckHat(Settings settings, ArmorMaterial material, EntityType<DuckEntity> entityType) {
         super(entityType, settings.armor(material, EquipmentType.HELMET).maxCount(1).component(DataComponentTypes.EQUIPPABLE, EquippableComponent.builder(EquipmentSlot.HEAD).build()).translationKey("item.spooncraftadditions.duck_hat"));
     }
@@ -26,6 +28,9 @@ public class DuckHat extends BoatItem implements PolymerItem {
     @Override
     public void modifyClientTooltip(List<Text> tooltip, ItemStack stack, PacketContext context) {
         tooltip.addFirst(Text.translatable("item.spooncraftadditions.duck_hat.desc").formatted(Formatting.GRAY));
+        if (stack.getOrDefault(ModComponents.DISABLED, false) == true) {
+            tooltip.addLast(Text.translatable("item.spooncraftadditions.hat.disabled").formatted(Formatting.RED));
+        }
     }
 
     @Override
