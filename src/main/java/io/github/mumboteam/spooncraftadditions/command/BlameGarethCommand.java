@@ -1,10 +1,10 @@
 package io.github.mumboteam.spooncraftadditions.command;
 
 import com.mojang.brigadier.CommandDispatcher;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.Component;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,31 +28,31 @@ public class BlameGarethCommand {
         }
     }
 
-    public static void register(CommandDispatcher<ServerCommandSource> dispatcher, String command, Boolean blamed) {
-        dispatcher.register(CommandManager.literal(command).executes(context -> {
-            Long cooldownEnd = cooldowns.get(context.getSource().getPlayer().getUuid());
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher, String command, Boolean blamed) {
+        dispatcher.register(Commands.literal(command).executes(context -> {
+            Long cooldownEnd = cooldowns.get(context.getSource().getPlayer().getUUID());
 
             if (cooldownEnd == null || cooldownEnd < System.currentTimeMillis()) {
                 BlameGarethState state = BlameGarethState.getServerState(context.getSource().getServer());
 
                 if (blamed) {
                     state.totalBlamed += 1;
-                    context.getSource().getServer().getPlayerManager().broadcast(Text.translatable("commands.blamegareth.success",
+                    context.getSource().getServer().getPlayerList().broadcastSystemMessage(Component.translatable("commands.blamegareth.success",
                             context.getSource().getPlayer().getName(),
                             state.totalBlamed,
-                            indicator(state.totalBlamed)).formatted(Formatting.GOLD), false
+                            indicator(state.totalBlamed)).withStyle(ChatFormatting.GOLD), false
                     );
                 } else {
                     state.totalForgiven += 1;
-                    context.getSource().getServer().getPlayerManager().broadcast(Text.translatable("commands.forgivegareth.success",
+                    context.getSource().getServer().getPlayerList().broadcastSystemMessage(Component.translatable("commands.forgivegareth.success",
                             context.getSource().getPlayer().getName(),
                             state.totalForgiven,
-                            indicator(state.totalForgiven)).formatted(Formatting.GOLD), false
+                            indicator(state.totalForgiven)).withStyle(ChatFormatting.GOLD), false
                     );
                 }
-                cooldowns.put(context.getSource().getPlayer().getUuid(), System.currentTimeMillis() + 60*1000);
+                cooldowns.put(context.getSource().getPlayer().getUUID(), System.currentTimeMillis() + 60*1000);
             } else {
-                context.getSource().sendFeedback(() -> Text.translatable("commands.blamegareth.cooldown").formatted(Formatting.RED), false);
+                context.getSource().sendSuccess(() -> Component.translatable("commands.blamegareth.cooldown").withStyle(ChatFormatting.RED), false);
             }
 
             return 1;

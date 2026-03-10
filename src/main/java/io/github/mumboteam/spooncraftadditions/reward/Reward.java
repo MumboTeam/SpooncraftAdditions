@@ -2,8 +2,8 @@ package io.github.mumboteam.spooncraftadditions.reward;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Uuids;
+import net.minecraft.core.UUIDUtil;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 import java.util.UUID;
@@ -14,7 +14,7 @@ public record Reward(
 ) {
     public static final Codec<Reward> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             ItemStack.CODEC.fieldOf("stack").forGetter(Reward::stack),
-            Codec.list(Uuids.CODEC).fieldOf("eligiblePlayers").forGetter(Reward::eligiblePlayers)
+            Codec.list(UUIDUtil.AUTHLIB_CODEC).fieldOf("eligiblePlayers").forGetter(Reward::eligiblePlayers)
     ).apply(instance, Reward::new));
 
     @Override

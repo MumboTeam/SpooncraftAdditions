@@ -3,36 +3,36 @@ package io.github.mumboteam.spooncraftadditions.entity;
 import com.mojang.datafixers.util.Pair;
 import eu.pb4.polymer.core.api.entity.PolymerEntity;
 import io.github.mumboteam.spooncraftadditions.SpooncraftAdditions;
-import io.github.mumboteam.spooncraftadditions.mixin.AbstractBoatEntityAccessor;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.MovementType;
-import net.minecraft.entity.vehicle.BoatEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
+import io.github.mumboteam.spooncraftadditions.mixin.AbstractBoatAccessor;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.entity.vehicle.boat.Boat;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import xyz.nucleoid.packettweaker.PacketContext;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class DuckEntity extends BoatEntity implements PolymerEntity {
+public class DuckEntity extends Boat implements PolymerEntity {
     ItemStack itemStack;
     int quackCooldown = 0;
 
-    public DuckEntity(EntityType<? extends DuckEntity> entityType, World world, Supplier<Item> itemSupplier) {
+    public DuckEntity(EntityType<? extends DuckEntity> entityType, Level world, Supplier<Item> itemSupplier) {
         super(entityType, world, itemSupplier);
         this.setInvisible(true);
-        this.itemStack = Items.PAPER.getDefaultStack();
-        this.itemStack.set(DataComponentTypes.ITEM_MODEL, Identifier.of(SpooncraftAdditions.ID, "duck"));
+        this.itemStack = Items.PAPER.getDefaultInstance();
+        this.itemStack.set(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath(SpooncraftAdditions.ID, "duck"));
     }
 
     @Override
@@ -41,7 +41,7 @@ public class DuckEntity extends BoatEntity implements PolymerEntity {
     }
 
     @Override
-    public List<Pair<EquipmentSlot, ItemStack>> getPolymerVisibleEquipment(List<Pair<EquipmentSlot, ItemStack>> items, ServerPlayerEntity player) {
+    public List<Pair<EquipmentSlot, ItemStack>> getPolymerVisibleEquipment(List<Pair<EquipmentSlot, ItemStack>> items, ServerPlayer player) {
         List<Pair<EquipmentSlot, ItemStack>> list = new ArrayList<>();
         list.add(new Pair<>(EquipmentSlot.HEAD, itemStack));
 
@@ -57,25 +57,25 @@ public class DuckEntity extends BoatEntity implements PolymerEntity {
     public void tick() {
         super.tick();
 
-        if (this.getControllingPassenger() instanceof ServerPlayerEntity player) {
-            ((AbstractBoatEntityAccessor)this).callUpdateVelocity();
-            this.move(MovementType.SELF, this.getVelocity());
+        if (this.getControllingPassenger() instanceof ServerPlayer player) {
+            ((AbstractBoatAccessor)this).callFloatBoat();
+            this.move(MoverType.SELF, this.getDeltaMovement());
 
-            if (player.getPlayerInput().forward()) {
-                this.move(MovementType.PLAYER, Vec3d.fromPolar(0, this.getYaw()).multiply(0.3F));
-                this.updatePositionAndAngles(this.getX(), this.getY(), this.getZ(), MathHelper.lerpAngleDegrees(0.2F, this.getYaw(), player.getYaw()), this.getPitch());
-            } else if (player.getPlayerInput().backward()) {
-                this.move(MovementType.PLAYER, Vec3d.fromPolar(0, this.getYaw()).negate().multiply(0.3F));
-                this.updatePositionAndAngles(this.getX(), this.getY(), this.getZ(), MathHelper.lerpAngleDegrees(0.2F, this.getYaw(), player.getYaw()), this.getPitch());
+            if (player.getLastClientInput().forward()) {
+                this.move(MoverType.PLAYER, Vec3.directionFromRotation(0, this.getYRot()).scale(0.3F));
+                this.absSnapTo(this.getX(), this.getY(), this.getZ(), Mth.rotLerp(0.2F, this.getYRot(), player.getYRot()), this.getXRot());
+            } else if (player.getLastClientInput().backward()) {
+                this.move(MoverType.PLAYER, Vec3.directionFromRotation(0, this.getYRot()).reverse().scale(0.3F));
+                this.absSnapTo(this.getX(), this.getY(), this.getZ(), Mth.rotLerp(0.2F, this.getYRot(), player.getYRot()), this.getXRot());
             }
-            if (player.getPlayerInput().left()) {
-                this.updatePositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw() - 5.0F, this.getPitch());
+            if (player.getLastClientInput().left()) {
+                this.absSnapTo(this.getX(), this.getY(), this.getZ(), this.getYRot() - 5.0F, this.getXRot());
             }
-            if (player.getPlayerInput().right()) {
-                this.updatePositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw() + 5.0F, this.getPitch());
+            if (player.getLastClientInput().right()) {
+                this.absSnapTo(this.getX(), this.getY(), this.getZ(), this.getYRot() + 5.0F, this.getXRot());
             }
-            if (player.getPlayerInput().jump() && this.quackCooldown == 0) {
-                this.playSound(SoundEvent.of(Identifier.of(SpooncraftAdditions.ID, "entity.duck.quack")), 1.0F, 1.0F);
+            if (player.getLastClientInput().jump() && this.quackCooldown == 0) {
+                this.playSound(SoundEvent.createVariableRangeEvent(Identifier.fromNamespaceAndPath(SpooncraftAdditions.ID, "entity.duck.quack")), 1.0F, 1.0F);
                 this.quackCooldown = 20;
             }
 
@@ -85,12 +85,12 @@ public class DuckEntity extends BoatEntity implements PolymerEntity {
 
 
     @Override
-    public float getHeadYaw() {
-        return this.getYaw();
+    public float getYHeadRot() {
+        return this.getYRot();
     }
 
     @Override
-    public Vec3d getSyncedPos() {
-        return super.getSyncedPos().subtract(0, 1.5, 0);
+    public Vec3 trackingPosition() {
+        return super.trackingPosition().subtract(0, 1.5, 0);
     }
 }

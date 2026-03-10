@@ -1,17 +1,17 @@
 package io.github.mumboteam.spooncraftadditions.reward;
 
 import eu.pb4.playerdata.api.PlayerDataApi;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.level.ServerPlayer;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 public class PlayerRewards {
-    ServerPlayerEntity player;
+    ServerPlayer player;
     ClaimedRewards claimedRewards;
 
-    public PlayerRewards(ServerPlayerEntity player) {
+    public PlayerRewards(ServerPlayer player) {
         this.player = player;
         this.claimedRewards = PlayerDataApi.getCustomDataFor(player, Rewards.CLAIMED_REWARDS_STORAGE);
 
@@ -23,7 +23,7 @@ public class PlayerRewards {
 
     public Collection<Reward> getClaimable() {
         return Rewards.get().stream()
-                .filter(reward -> (!this.claimedRewards.rewards.contains(Rewards.getIdentifier(reward)) && reward.eligiblePlayers().contains(this.player.getUuid())))
+                .filter(reward -> (!this.claimedRewards.rewards.contains(Rewards.getIdentifier(reward)) && reward.eligiblePlayers().contains(this.player.getUUID())))
                 .collect(Collectors.toSet());
     }
 
@@ -38,7 +38,7 @@ public class PlayerRewards {
     }
 
     public void claimReward(Reward reward) {
-        this.player.giveItemStack(reward.stack());
+        this.player.addItem(reward.stack());
         this.claimedRewards.rewards.add(Rewards.getIdentifier(reward));
 
         PlayerDataApi.setCustomDataFor(this.player, Rewards.CLAIMED_REWARDS_STORAGE, this.claimedRewards);

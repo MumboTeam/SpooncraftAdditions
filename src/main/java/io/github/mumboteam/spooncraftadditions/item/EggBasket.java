@@ -1,24 +1,27 @@
 package io.github.mumboteam.spooncraftadditions.item;
 
 import eu.pb4.polymer.core.api.item.PolymerItem;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.BundleContentsComponent;
-import net.minecraft.item.*;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.BundleItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.BundleContents;
 import xyz.nucleoid.packettweaker.PacketContext;
 
 import java.util.List;
 
 public class EggBasket extends BundleItem implements PolymerItem {
 
-    public EggBasket(Settings settings) {
-        super(settings.maxCount(1).maxDamage(BundleItem.DEFAULT_MAX_COUNT).component(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT));
+    public EggBasket(Properties settings) {
+        super(settings.stacksTo(1).durability(BundleItem.DEFAULT_MAX_STACK_SIZE).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY));
     }
 
     @Override
-    public void modifyClientTooltip(List<Text> tooltip, ItemStack stack, PacketContext context) {
-        tooltip.addFirst(Text.translatable("item.spooncraftadditions.egg_basket.desc").formatted(Formatting.GRAY));
+    public void modifyClientTooltip(List<Component> tooltip, ItemStack stack, PacketContext context) {
+        tooltip.addFirst(Component.translatable("item.spooncraftadditions.egg_basket.desc").withStyle(ChatFormatting.GRAY));
     }
 
     @Override

@@ -1,64 +1,63 @@
 package io.github.mumboteam.spooncraftadditions.item;
 
 import eu.pb4.polymer.core.api.item.PolymerItem;
-import net.minecraft.component.type.AttributeModifierSlot;
-import net.minecraft.component.type.AttributeModifiersComponent;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.network.packet.s2c.play.EntityVelocityUpdateS2CPacket;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Rarity;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import xyz.nucleoid.packettweaker.PacketContext;
-
 
 import java.util.List;
 
 public class TetrioStick extends Item implements PolymerItem {
-    public TetrioStick(Settings settings) {
-        super(settings.maxCount(1).rarity(Rarity.UNCOMMON).attributeModifiers(createAttributeModifiers()));
+    public TetrioStick(Properties settings) {
+        super(settings.stacksTo(1).rarity(Rarity.UNCOMMON).attributes(createAttributeModifiers()));
     }
 
-    private static AttributeModifiersComponent createAttributeModifiers() {
-        AttributeModifiersComponent.Builder builder = AttributeModifiersComponent.builder();
+    private static ItemAttributeModifiers createAttributeModifiers() {
+        ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
 
         builder.add(
-                EntityAttributes.ATTACK_DAMAGE,
-                new EntityAttributeModifier(
-                        Identifier.of("tetrio_stick_attack_damage"),
+                Attributes.ATTACK_DAMAGE,
+                new AttributeModifier(
+                        Identifier.parse("tetrio_stick_attack_damage"),
                         -0.99999,
-                        EntityAttributeModifier.Operation.ADD_VALUE
+                        AttributeModifier.Operation.ADD_VALUE
                 ),
-                AttributeModifierSlot.MAINHAND
+                EquipmentSlotGroup.MAINHAND
         );
 
         return builder.build();
     }
 
     @Override
-    public void postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+    public void hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         double strength = 1.5;
 
-        double yaw = Math.toRadians(attacker.getYaw());
+        double yaw = Math.toRadians(attacker.getYRot());
         double x = -Math.sin(yaw) * strength;
         double z = Math.cos(yaw) * strength;
         double y = 0.3;
 
-        target.addVelocity(x, y, z);
-        if (target instanceof ServerPlayerEntity player) {
-            player.networkHandler.sendPacket(new EntityVelocityUpdateS2CPacket(player));
+        target.push(x, y, z);
+        if (target instanceof ServerPlayer player) {
+            player.connection.send(new ClientboundSetEntityMotionPacket(player));
         }
     }
 
     @Override
-    public void modifyClientTooltip(List<Text> tooltip, ItemStack stack, PacketContext context) {
-        tooltip.addFirst(Text.translatable("item.spooncraftadditions.tetrio_stick.desc").formatted(Formatting.GRAY));
+    public void modifyClientTooltip(List<Component> tooltip, ItemStack stack, PacketContext context) {
+        tooltip.addFirst(Component.translatable("item.spooncraftadditions.tetrio_stick.desc").withStyle(ChatFormatting.GRAY));
     }
 
 

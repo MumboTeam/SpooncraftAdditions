@@ -8,9 +8,9 @@ import eu.pb4.playerdata.api.storage.JsonDataStorage;
 import eu.pb4.playerdata.api.storage.PlayerDataStorage;
 import io.github.mumboteam.spooncraftadditions.SpooncraftAdditions;
 import io.github.mumboteam.spooncraftadditions.registry.TinyRegistry;
-import net.minecraft.resource.Resource;
-import net.minecraft.resource.ResourceManager;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.packs.resources.Resource;
+import net.minecraft.server.packs.resources.ResourceManager;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -24,8 +24,8 @@ public class Rewards {
     public static void reload(ResourceManager manager) {
         REWARDS.clear();
 
-        for (Map.Entry<Identifier, Resource> resource : manager.findResources("reward", path -> path.toString().endsWith(".json")).entrySet()) {
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getValue().getInputStream()))) {
+        for (Map.Entry<Identifier, Resource> resource : manager.listResources("reward", path -> path.toString().endsWith(".json")).entrySet()) {
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getValue().open()))) {
                 JsonElement json = JsonParser.parseReader(reader);
                 DataResult<Reward> result = Reward.CODEC.parse(JsonOps.INSTANCE, json);
                 REWARDS.register(resource.getKey(), result.getOrThrow());

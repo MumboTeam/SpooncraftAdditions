@@ -1,37 +1,37 @@
 package io.github.mumboteam.spooncraftadditions.registry;
 
 import io.github.mumboteam.spooncraftadditions.SpooncraftAdditions;
-import net.minecraft.block.jukebox.JukeboxSong;
-import net.minecraft.block.jukebox.JukeboxSongs;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.JukeboxSong;
+import net.minecraft.world.item.JukeboxSongs;
 
 public interface ModJukeboxSongs extends JukeboxSongs {
     public static void initialize() {
     }
 
-    RegistryKey<JukeboxSong> CACTUS_STRING_SAND = of("cactus_string_sand");
-    RegistryKey<JukeboxSong> CORRIDOR = of("corridor");
-    RegistryKey<JukeboxSong> DIABOLICAL = of("diabolical");
-    RegistryKey<JukeboxSong> DIBBY_DIBBY_DIAMONDS = of("dibby_dibby_diamonds");
-    RegistryKey<JukeboxSong> KERALIS_AND_XISUMA_NO_NO_NO = of("keralis_and_xisuma_no_no_no");
-    RegistryKey<JukeboxSong> MORE_DOORS_FOR_ME = of("more_doors_for_me");
-    RegistryKey<JukeboxSong> MUMBO_AFK = of("mumbo_afk");
-    RegistryKey<JukeboxSong> MUMBO_NO_NO_NO = of("mumbo_no_no_no");
-    RegistryKey<JukeboxSong> NETHER_WART = of("nether_wart");
-    RegistryKey<JukeboxSong> OUTRO_TIME = of("outro_time");
-    RegistryKey<JukeboxSong> PICKLES = of("pickles");
-    RegistryKey<JukeboxSong> PLACING_SLABS = of("placing_slabs");
-    RegistryKey<JukeboxSong> RESOURCE_GATHERING = of("resource_gathering");
-    RegistryKey<JukeboxSong> SHIFT_CLICK = of("shift_click");
-    RegistryKey<JukeboxSong> STUPID = of("stupid");
-    RegistryKey<JukeboxSong> SUGARCANE = of("sugarcane");
-    RegistryKey<JukeboxSong> THE_SUPER_WEAPON = of("the_super_weapon");
-    RegistryKey<JukeboxSong> TINY_TIMELAPSE = of("tiny_timelapse");
-    RegistryKey<JukeboxSong> WATER_SOURCE = of("water_source");
+    ResourceKey<JukeboxSong> CACTUS_STRING_SAND = create("cactus_string_sand");
+    ResourceKey<JukeboxSong> CORRIDOR = create("corridor");
+    ResourceKey<JukeboxSong> DIABOLICAL = create("diabolical");
+    ResourceKey<JukeboxSong> DIBBY_DIBBY_DIAMONDS = create("dibby_dibby_diamonds");
+    ResourceKey<JukeboxSong> KERALIS_AND_XISUMA_NO_NO_NO = create("keralis_and_xisuma_no_no_no");
+    ResourceKey<JukeboxSong> MORE_DOORS_FOR_ME = create("more_doors_for_me");
+    ResourceKey<JukeboxSong> MUMBO_AFK = create("mumbo_afk");
+    ResourceKey<JukeboxSong> MUMBO_NO_NO_NO = create("mumbo_no_no_no");
+    ResourceKey<JukeboxSong> NETHER_WART = create("nether_wart");
+    ResourceKey<JukeboxSong> OUTRO_TIME = create("outro_time");
+    ResourceKey<JukeboxSong> PICKLES = create("pickles");
+    ResourceKey<JukeboxSong> PLACING_SLABS = create("placing_slabs");
+    ResourceKey<JukeboxSong> RESOURCE_GATHERING = create("resource_gathering");
+    ResourceKey<JukeboxSong> SHIFT_CLICK = create("shift_click");
+    ResourceKey<JukeboxSong> STUPID = create("stupid");
+    ResourceKey<JukeboxSong> SUGARCANE = create("sugarcane");
+    ResourceKey<JukeboxSong> THE_SUPER_WEAPON = create("the_super_weapon");
+    ResourceKey<JukeboxSong> TINY_TIMELAPSE = create("tiny_timelapse");
+    ResourceKey<JukeboxSong> WATER_SOURCE = create("water_source");
 
-    private static RegistryKey<JukeboxSong> of(String id) {
-        return RegistryKey.of(RegistryKeys.JUKEBOX_SONG, Identifier.of(SpooncraftAdditions.ID, id));
+    private static ResourceKey<JukeboxSong> create(String id) {
+        return ResourceKey.create(Registries.JUKEBOX_SONG, Identifier.fromNamespaceAndPath(SpooncraftAdditions.ID, id));
     }
 }

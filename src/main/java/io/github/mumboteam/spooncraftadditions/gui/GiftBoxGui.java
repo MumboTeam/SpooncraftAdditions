@@ -9,31 +9,31 @@ import io.github.mumboteam.spooncraftadditions.block.entity.GiftBoxBlockEntity;
 import io.github.mumboteam.spooncraftadditions.reward.PlayerRewards;
 import io.github.mumboteam.spooncraftadditions.reward.Reward;
 import it.unimi.dsi.fastutil.ints.IntList;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.FireworkExplosionComponent;
-import net.minecraft.component.type.FireworksComponent;
-import net.minecraft.entity.projectile.FireworkRocketEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.network.packet.s2c.play.PlaySoundS2CPacket;
-import net.minecraft.screen.ScreenHandlerType;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Style;
-import net.minecraft.text.StyleSpriteSource;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FontDescription;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.protocol.game.ClientboundSoundPacket;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.projectile.FireworkRocketEntity;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.FireworkExplosion;
+import net.minecraft.world.item.component.Fireworks;
 
 import java.util.List;
 
 public class GiftBoxGui extends LayeredGui {
-    StyleSpriteSource.Font GUI_FONT = new StyleSpriteSource.Font(Identifier.of(SpooncraftAdditions.ID, "gui"));
+    FontDescription.Resource GUI_FONT = new FontDescription.Resource(Identifier.fromNamespaceAndPath(SpooncraftAdditions.ID, "gui"));
 
     private final BlockPos pos;
-    private final ServerPlayerEntity player;
+    private final ServerPlayer player;
     LayerView open;
 
     Layer rewardsTab;
@@ -46,8 +46,8 @@ public class GiftBoxGui extends LayeredGui {
 
     PlayerRewards playerRewards;
 
-    public GiftBoxGui(ServerPlayerEntity player, BlockPos pos) {
-        super(ScreenHandlerType.GENERIC_9X6, player, false);
+    public GiftBoxGui(ServerPlayer player, BlockPos pos) {
+        super(MenuType.GENERIC_9x6, player, false);
 
         this.playerRewards = new PlayerRewards(player);
         this.player = player;
@@ -79,25 +79,25 @@ public class GiftBoxGui extends LayeredGui {
 
     private void claimReward(Reward reward) {
         this.playerRewards.claimReward(reward);
-        this.player.networkHandler.sendPacket(new PlaySoundS2CPacket(SoundEvents.BLOCK_NOTE_BLOCK_CHIME, SoundCategory.MASTER, this.player.getX(), this.player.getY(), this.player.getZ(), 1, 1, this.player.getRandom().nextLong()));
+        this.player.connection.send(new ClientboundSoundPacket(SoundEvents.NOTE_BLOCK_CHIME, SoundSource.MASTER, this.player.getX(), this.player.getY(), this.player.getZ(), 1, 1, this.player.getRandom().nextLong()));
 
-        FireworkExplosionComponent explosion = new FireworkExplosionComponent(FireworkExplosionComponent.Type.LARGE_BALL, IntList.of(0xea625e), IntList.of(0x4cb679), true, true);
-        ItemStack rocket = Items.FIREWORK_ROCKET.getDefaultStack();
-        rocket.set(DataComponentTypes.FIREWORKS, new FireworksComponent(1, List.of(explosion)));
+        FireworkExplosion explosion = new FireworkExplosion(FireworkExplosion.Shape.LARGE_BALL, IntList.of(0xea625e), IntList.of(0x4cb679), true, true);
+        ItemStack rocket = Items.FIREWORK_ROCKET.getDefaultInstance();
+        rocket.set(DataComponents.FIREWORKS, new Fireworks(1, List.of(explosion)));
 
-        FireworkRocketEntity fireworkRocketEntity = new FireworkRocketEntity(this.player.getEntityWorld(),
+        FireworkRocketEntity fireworkRocketEntity = new FireworkRocketEntity(this.player.level(),
                 this.pos.getX() + 0.5,
                 this.pos.getY() + 0.5,
                 this.pos.getZ() + 0.5,
                 rocket
         );
-        this.player.getEntityWorld().spawnEntity(fireworkRocketEntity);
+        this.player.level().addFreshEntity(fireworkRocketEntity);
 
         refreshPages();
-        this.setTitle(Text.empty().append(Text.literal("-1." + this.rewardsTabTitle).setStyle(Style.EMPTY.withColor(0xFFFFFF).withFont(GUI_FONT))));
+        this.setTitle(Component.empty().append(Component.literal("-1." + this.rewardsTabTitle).setStyle(Style.EMPTY.withColor(0xFFFFFF).withFont(GUI_FONT))));
 
-        if (this.player.getEntityWorld().getBlockEntity(this.pos) instanceof GiftBoxBlockEntity blockEntity) {
-            blockEntity.clearCount(this.player.networkHandler);
+        if (this.player.level().getBlockEntity(this.pos) instanceof GiftBoxBlockEntity blockEntity) {
+            blockEntity.clearCount(this.player.connection);
         }
     }
 
@@ -109,8 +109,8 @@ public class GiftBoxGui extends LayeredGui {
         int pos = 0;
         for (Reward reward : playerRewards.getClaimable()) {
             rewardsTab.setSlot(pos, new GuiElementBuilder(reward.stack())
-                    .addLoreLine(Text.empty())
-                    .addLoreLine(Text.translatable("gui.spooncraftadditions.giftbox.claim").setStyle(Style.EMPTY.withItalic(false).withColor(Formatting.GREEN)))
+                    .addLoreLine(Component.empty())
+                    .addLoreLine(Component.translatable("gui.spooncraftadditions.giftbox.claim").setStyle(Style.EMPTY.withItalic(false).withColor(ChatFormatting.GREEN)))
                     .setCallback(() -> claimReward(reward)));
             pos += 1;
         }
@@ -145,6 +145,6 @@ public class GiftBoxGui extends LayeredGui {
             this.removeLayer(this.open);
         }
         this.open = this.addLayer(tab, 0, 1);
-        this.setTitle(Text.empty().append(Text.literal("-1." + title).setStyle(Style.EMPTY.withColor(0xFFFFFF).withFont(GUI_FONT))));
+        this.setTitle(Component.empty().append(Component.literal("-1." + title).setStyle(Style.EMPTY.withColor(0xFFFFFF).withFont(GUI_FONT))));
     }
 }

@@ -1,22 +1,24 @@
 package io.github.mumboteam.spooncraftadditions.item;
 
 import eu.pb4.polymer.core.api.item.PolymerItem;
-import io.github.mumboteam.spooncraftadditions.accessor.ShrinkRayTimerAccess;
 import io.github.mumboteam.spooncraftadditions.SpooncraftAdditions;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
-import net.minecraft.particle.DustParticleEffect;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.ColorHelper;
-import net.minecraft.util.math.Vec3d;
+import io.github.mumboteam.spooncraftadditions.accessor.ShrinkRayTimerAccess;
+import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.ARGB;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.phys.Vec3;
 import xyz.nucleoid.packettweaker.PacketContext;
 
 public class ShrinkRay extends Item implements PolymerItem {
@@ -25,30 +27,30 @@ public class ShrinkRay extends Item implements PolymerItem {
     public static int GROW_TICKS = 20*30;
     public static double SIZE = 0.1;
 
-    public ShrinkRay(Settings settings) {
-        super(settings.maxCount(1));
+    public ShrinkRay(Properties settings) {
+        super(settings.stacksTo(1));
     }
 
     @Override
-    public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-        if (!user.getItemCooldownManager().isCoolingDown(stack) && entity instanceof ServerPlayerEntity player) {
+    public InteractionResult interactLivingEntity(ItemStack stack, Player user, LivingEntity entity, InteractionHand hand) {
+        if (!user.getCooldowns().isOnCooldown(stack) && entity instanceof ServerPlayer player) {
             ((ShrinkRayTimerAccess)player).spooncraftadditions_setShrinkRayTimer(DURATION_TICKS);
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, SHRINK_TICKS, 1, false, false));
-            user.getItemCooldownManager().set(stack, DURATION_TICKS);
-            user.playSound(SoundEvent.of(Identifier.of(SpooncraftAdditions.ID, "item.shrink_ray")));
+            player.addEffect(new MobEffectInstance(MobEffects.GLOWING, SHRINK_TICKS, 1, false, false));
+            user.getCooldowns().addCooldown(stack, DURATION_TICKS);
+            user.makeSound(SoundEvent.createVariableRangeEvent(Identifier.fromNamespaceAndPath(SpooncraftAdditions.ID, "item.shrink_ray")));
 
-            ParticleEffect effect = new DustParticleEffect(ColorHelper.fromFloats(1, 0, 0.5f, 1), 2.0f);
-            Vec3d pos = user.getEntityPos().add(0, 1.3, 0);
-            Vec3d targetPos = player.getEntityPos();
+            ParticleOptions effect = new DustParticleOptions(ARGB.colorFromFloat(1, 0, 0.5f, 1), 2.0f);
+            Vec3 pos = user.position().add(0, 1.3, 0);
+            Vec3 targetPos = player.position();
 
-            while (!pos.isInRange(targetPos, 0.5)) {
+            while (!pos.closerThan(targetPos, 0.5)) {
                 pos = pos.lerp(targetPos, 0.1);
-                player.getEntityWorld().spawnParticles(effect, pos.x, pos.y, pos.z, 1, 0, 0, 0, 0);
+                player.level().sendParticles(effect, pos.x, pos.y, pos.z, 1, 0, 0, 0, 0);
             }
 
-            return ActionResult.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
-        return ActionResult.FAIL;
+        return InteractionResult.FAIL;
     }
 
     @Override

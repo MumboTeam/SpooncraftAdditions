@@ -2,63 +2,63 @@ package io.github.mumboteam.spooncraftadditions.item;
 
 import eu.pb4.polymer.core.api.item.PolymerItem;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.FireworkExplosionComponent;
-import net.minecraft.component.type.FireworksComponent;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.FireworkRocketEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.item.Items;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.FireworkRocketEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.FireworkExplosion;
+import net.minecraft.world.item.component.Fireworks;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import xyz.nucleoid.packettweaker.PacketContext;
 
 import java.util.List;
 
 public class RedstoneStaff extends Item implements PolymerItem {
     // (type, color, fade color, flicker, trail)
-    private static final FireworkExplosionComponent RED_BALL = new FireworkExplosionComponent(FireworkExplosionComponent.Type.LARGE_BALL, new IntArrayList(new int[]{0xFF0000}), new IntArrayList(),false, false);
+    private static final FireworkExplosion RED_BALL = new FireworkExplosion(FireworkExplosion.Shape.LARGE_BALL, new IntArrayList(new int[]{0xFF0000}), new IntArrayList(),false, false);
     private static final int COOLDOWN = 30*20;
 
-    public RedstoneStaff(Settings settings) {
-        super(settings.maxCount(1));
+    public RedstoneStaff(Properties settings) {
+        super(settings.stacksTo(1));
     }
 
     @Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
-        PlayerEntity user = context.getPlayer();
-        ItemStack itemStack = context.getStack();
-        World world = context.getWorld();
+    public InteractionResult useOn(UseOnContext context) {
+        Player user = context.getPlayer();
+        ItemStack itemStack = context.getItemInHand();
+        Level world = context.getLevel();
 
-        if (user != null && !user.getItemCooldownManager().isCoolingDown(itemStack)) {
-            user.getItemCooldownManager().set(itemStack, COOLDOWN);
-            List<FireworkExplosionComponent> explosions = List.of(RED_BALL);
-            FireworksComponent fwComp = new FireworksComponent(0, explosions);
+        if (user != null && !user.getCooldowns().isOnCooldown(itemStack)) {
+            user.getCooldowns().addCooldown(itemStack, COOLDOWN);
+            List<FireworkExplosion> explosions = List.of(RED_BALL);
+            Fireworks fwComp = new Fireworks(0, explosions);
             ItemStack rocketStack = new ItemStack(Items.FIREWORK_ROCKET);
-            rocketStack.set(DataComponentTypes.FIREWORKS, fwComp);
+            rocketStack.set(DataComponents.FIREWORKS, fwComp);
 
-            Vec3d pos = context.getHitPos();
+            Vec3 pos = context.getClickLocation();
             FireworkRocketEntity rocket =
                     new FireworkRocketEntity(
                             world,
-                            pos.getX(), pos.getY(), pos.getZ(),
+                            pos.x(), pos.y(), pos.z(),
                             rocketStack
                     );
-            world.spawnEntity(rocket);
+            world.addFreshEntity(rocket);
 
-            return ActionResult.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
-        return ActionResult.FAIL;
+        return InteractionResult.FAIL;
     }
 
     @Override
-    public void modifyClientTooltip(List<Text> tooltip, ItemStack stack, PacketContext context) {
-        tooltip.addFirst(Text.translatable("item.spooncraftadditions.redstone_staff.desc").formatted(Formatting.GRAY));
+    public void modifyClientTooltip(List<Component> tooltip, ItemStack stack, PacketContext context) {
+        tooltip.addFirst(Component.translatable("item.spooncraftadditions.redstone_staff.desc").withStyle(ChatFormatting.GRAY));
     }
 
     @Override

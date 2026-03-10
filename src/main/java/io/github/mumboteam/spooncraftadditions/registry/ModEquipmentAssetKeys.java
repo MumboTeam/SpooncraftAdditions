@@ -1,18 +1,18 @@
 package io.github.mumboteam.spooncraftadditions.registry;
 
 import io.github.mumboteam.spooncraftadditions.SpooncraftAdditions;
-import net.minecraft.item.equipment.EquipmentAsset;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.equipment.EquipmentAsset;
 
 public interface ModEquipmentAssetKeys {
-    RegistryKey<? extends Registry<EquipmentAsset>> REGISTRY_KEY = RegistryKey.ofRegistry(Identifier.ofVanilla("equipment_asset"));
+    ResourceKey<? extends Registry<EquipmentAsset>> REGISTRY_KEY = ResourceKey.createRegistryKey(Identifier.withDefaultNamespace("equipment_asset"));
 
-    RegistryKey<EquipmentAsset> DRAGON_WINGS = register("dragon_wings");
-    RegistryKey<EquipmentAsset> KIRBY_WINGS = register("kirby_wings");
+    ResourceKey<EquipmentAsset> DRAGON_WINGS = register("dragon_wings");
+    ResourceKey<EquipmentAsset> KIRBY_WINGS = register("kirby_wings");
 
-    static RegistryKey<EquipmentAsset> register(String name) {
-        return RegistryKey.of(REGISTRY_KEY, Identifier.of(SpooncraftAdditions.ID, name));
+    static ResourceKey<EquipmentAsset> register(String name) {
+        return ResourceKey.create(REGISTRY_KEY, Identifier.fromNamespaceAndPath(SpooncraftAdditions.ID, name));
     }
 }

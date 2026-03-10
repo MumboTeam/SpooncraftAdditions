@@ -1,8 +1,8 @@
 package io.github.mumboteam.spooncraftadditions.material;
 
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.ToolMaterial;
 
 public class SpooncraftMaterial {
     public static final ToolMaterial MATERIAL = new ToolMaterial(

@@ -1,15 +1,15 @@
 package io.github.mumboteam.spooncraftadditions.registry;
 
 import io.github.mumboteam.spooncraftadditions.SpooncraftAdditions;
-import io.github.mumboteam.spooncraftadditions.block.GiftBoxBlock;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
 import io.github.mumboteam.spooncraftadditions.block.EggBlock;
+import io.github.mumboteam.spooncraftadditions.block.GiftBoxBlock;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.function.Function;
 
@@ -30,11 +30,11 @@ public class ModBlocks {
     public static final Block EGG32 = register("egg32", EggBlock::new);
     public static final Block EGG33 = register("egg33", EggBlock::new);
 
-    public static Block register(String path, Function<AbstractBlock.Settings, Block> function) {
-        Identifier id = Identifier.of(SpooncraftAdditions.ID, path);
-        Block block = function.apply(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, id)));
+    public static Block register(String path, Function<BlockBehaviour.Properties, Block> function) {
+        Identifier id = Identifier.fromNamespaceAndPath(SpooncraftAdditions.ID, path);
+        Block block = function.apply(BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, id)));
 
-        return Registry.register(Registries.BLOCK, id, block);
+        return Registry.register(BuiltInRegistries.BLOCK, id, block);
     }
 
     public static void initialize() {}

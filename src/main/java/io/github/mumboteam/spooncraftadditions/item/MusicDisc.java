@@ -1,12 +1,10 @@
 package io.github.mumboteam.spooncraftadditions.item;
 
 import eu.pb4.polymer.core.api.item.PolymerItem;
-import net.minecraft.block.jukebox.JukeboxSong;
-import net.minecraft.item.*;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Rarity;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.*;
 import xyz.nucleoid.packettweaker.PacketContext;
 
 import java.util.List;
@@ -14,8 +12,8 @@ import java.util.List;
 public class MusicDisc extends Item implements PolymerItem {
     private final String disc;
 
-    public MusicDisc(Settings settings, String disc, RegistryKey<JukeboxSong> jukeboxSong) {
-        super(settings.maxCount(1).translationKey("item.minecraft.music_disc_cat").rarity(Rarity.UNCOMMON).jukeboxPlayable(jukeboxSong));
+    public MusicDisc(Properties settings, String disc, ResourceKey<JukeboxSong> jukeboxSong) {
+        super(settings.stacksTo(1).overrideDescription("item.minecraft.music_disc_cat").rarity(Rarity.UNCOMMON).jukeboxPlayable(jukeboxSong));
         this.disc = disc;
     }
 
@@ -25,7 +23,7 @@ public class MusicDisc extends Item implements PolymerItem {
     }
 
     @Override
-    public void modifyClientTooltip(List<Text> tooltip, ItemStack stack, PacketContext context) {
-        tooltip.add(Text.translatable("item.spooncraftadditions.music_disc_" + this.disc + ".desc").formatted(Formatting.GRAY));
+    public void modifyClientTooltip(List<Component> tooltip, ItemStack stack, PacketContext context) {
+        tooltip.add(Component.translatable("item.spooncraftadditions.music_disc_" + this.disc + ".desc").withStyle(ChatFormatting.GRAY));
     }
 }
