@@ -11,7 +11,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.component.CustomModelData;
-import xyz.nucleoid.packettweaker.PacketContext;
+import net.fabricmc.fabric.api.networking.v1.context.PacketContext;
+import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class SpooncraftSword extends Item implements PolymerItem {
     }
 
     @Override
-    public void hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+    public void hurtEnemy(ItemStack stack, @NonNull LivingEntity target, @NonNull LivingEntity attacker) {
         CustomModelData cmd = stack.get(DataComponents.CUSTOM_MODEL_DATA);
         if (cmd != null && cmd.getFloat(0) != null) {
             stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(List.of((stack.get(DataComponents.CUSTOM_MODEL_DATA).getFloat(0) + 1) % 6) ,List.of(), List.of(), List.of()));

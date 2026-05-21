@@ -11,7 +11,8 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import xyz.nucleoid.packettweaker.PacketContext;
+import net.fabricmc.fabric.api.networking.v1.context.PacketContext;
+import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class SpooncraftSpoon extends ShovelItem implements PolymerItem {
     }
 
     @Override
-    public boolean canDestroyBlock(ItemStack stack, BlockState state, Level world, BlockPos pos, LivingEntity user) {
+    public boolean canDestroyBlock(@NonNull ItemStack stack, @NonNull BlockState state, @NonNull Level world, @NonNull BlockPos pos, LivingEntity user) {
         if (!isUsable(user.getMainHandItem())) {
             return false;
         }
@@ -45,7 +46,7 @@ public class SpooncraftSpoon extends ShovelItem implements PolymerItem {
     }
 
     @Override
-    public InteractionResult useOn(UseOnContext context) {
+    public @NonNull InteractionResult useOn(UseOnContext context) {
         if (isUsable(context.getItemInHand())) {
             return super.useOn(context);
         }

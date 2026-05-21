@@ -19,7 +19,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.Vec3;
-import xyz.nucleoid.packettweaker.PacketContext;
+import net.fabricmc.fabric.api.networking.v1.context.PacketContext;
+import org.jspecify.annotations.NonNull;
 
 public class ShrinkRay extends Item implements PolymerItem {
     public static int DURATION_TICKS = 20*60*2;
@@ -32,7 +33,7 @@ public class ShrinkRay extends Item implements PolymerItem {
     }
 
     @Override
-    public InteractionResult interactLivingEntity(ItemStack stack, Player user, LivingEntity entity, InteractionHand hand) {
+    public @NonNull InteractionResult interactLivingEntity(@NonNull ItemStack stack, Player user, @NonNull LivingEntity entity, @NonNull InteractionHand hand) {
         if (!user.getCooldowns().isOnCooldown(stack) && entity instanceof ServerPlayer player) {
             ((ShrinkRayTimerAccess)player).spooncraftadditions_setShrinkRayTimer(DURATION_TICKS);
             player.addEffect(new MobEffectInstance(MobEffects.GLOWING, SHRINK_TICKS, 1, false, false));

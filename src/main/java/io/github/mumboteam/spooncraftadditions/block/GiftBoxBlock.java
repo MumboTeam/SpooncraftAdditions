@@ -5,6 +5,7 @@ import eu.pb4.polymer.core.api.block.PolymerHeadBlock;
 import io.github.mumboteam.spooncraftadditions.block.entity.GiftBoxBlockEntity;
 import io.github.mumboteam.spooncraftadditions.gui.GiftBoxGui;
 import io.github.mumboteam.spooncraftadditions.registry.ModBlockEntityTypes;
+import net.fabricmc.fabric.api.networking.v1.context.PacketContext;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -25,7 +26,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.RotationSegment;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
-import xyz.nucleoid.packettweaker.PacketContext;
+import org.jspecify.annotations.NonNull;
 
 public class GiftBoxBlock extends BaseEntityBlock implements PolymerHeadBlock {
     public GiftBoxBlock(Properties settings) {
@@ -33,12 +34,12 @@ public class GiftBoxBlock extends BaseEntityBlock implements PolymerHeadBlock {
     }
 
     @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
+    protected @NonNull MapCodec<? extends BaseEntityBlock> codec() {
         return simpleCodec(GiftBoxBlock::new);
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+    protected @NonNull InteractionResult useWithoutItem(@NonNull BlockState state, @NonNull Level world, @NonNull BlockPos pos, @NonNull Player player, @NonNull BlockHitResult hit) {
         if (player instanceof ServerPlayer serverPlayer) {
             new GiftBoxGui(serverPlayer, pos).open();
             return InteractionResult.SUCCESS;
@@ -52,7 +53,7 @@ public class GiftBoxBlock extends BaseEntityBlock implements PolymerHeadBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.@NonNull Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(BlockStateProperties.ROTATION_16);
     }

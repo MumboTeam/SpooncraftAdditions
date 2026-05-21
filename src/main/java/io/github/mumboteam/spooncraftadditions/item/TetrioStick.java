@@ -1,6 +1,7 @@
 package io.github.mumboteam.spooncraftadditions.item;
 
 import eu.pb4.polymer.core.api.item.PolymerItem;
+import net.fabricmc.fabric.api.networking.v1.context.PacketContext;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
@@ -15,7 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
-import xyz.nucleoid.packettweaker.PacketContext;
+import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class TetrioStick extends Item implements PolymerItem {
     }
 
     @Override
-    public void hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+    public void hurtEnemy(@NonNull ItemStack stack, LivingEntity target, LivingEntity attacker) {
         double strength = 1.5;
 
         double yaw = Math.toRadians(attacker.getYRot());

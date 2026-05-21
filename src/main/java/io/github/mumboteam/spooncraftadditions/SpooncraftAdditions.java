@@ -41,6 +41,6 @@ public class SpooncraftAdditions implements ModInitializer {
             IsItGarethsFaultCommand.register(dispatcher);
         });
 
-        ResourceLoader.get(PackType.SERVER_DATA).registerReloader(Identifier.fromNamespaceAndPath(SpooncraftAdditions.ID, "reward"), (ResourceManagerReloadListener) Rewards::reload);
+        ResourceLoader.get(PackType.SERVER_DATA).registerReloadListener(Identifier.fromNamespaceAndPath(SpooncraftAdditions.ID, "reward"), (ResourceManagerReloadListener) Rewards::reload);
     }
 }

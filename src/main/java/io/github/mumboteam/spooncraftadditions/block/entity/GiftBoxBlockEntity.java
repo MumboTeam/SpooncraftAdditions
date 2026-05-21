@@ -2,8 +2,8 @@ package io.github.mumboteam.spooncraftadditions.block.entity;
 
 import eu.pb4.polymer.virtualentity.api.ElementHolder;
 import eu.pb4.polymer.virtualentity.api.attachment.ChunkAttachment;
+import eu.pb4.polymer.virtualentity.api.data.DisplayEntityData;
 import eu.pb4.polymer.virtualentity.api.elements.TextDisplayElement;
-import eu.pb4.polymer.virtualentity.api.tracker.DisplayTrackedData;
 import io.github.mumboteam.spooncraftadditions.registry.ModBlockEntityTypes;
 import io.github.mumboteam.spooncraftadditions.reward.PlayerRewards;
 import net.minecraft.ChatFormatting;
@@ -60,7 +60,7 @@ public class GiftBoxBlockEntity extends BlockEntity {
             int count = claimableRewardCount.get(player);
             player.send(new ClientboundSetEntityDataPacket(
                     textDisplay.getEntityId(),
-                    List.of(SynchedEntityData.DataValue.create(DisplayTrackedData.Text.TEXT, Component.empty()
+                    List.of(SynchedEntityData.DataValue.create(DisplayEntityData.Text.TEXT, Component.empty()
                             .append(title)
                             .append(count == 1 ?
                                     Component.translatable("block.spooncraftadditions.gift_box.reward") :

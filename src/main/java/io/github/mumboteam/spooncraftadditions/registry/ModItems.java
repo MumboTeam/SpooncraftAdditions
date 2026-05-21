@@ -2,8 +2,8 @@ package io.github.mumboteam.spooncraftadditions.registry;
 
 import eu.pb4.polymer.core.api.block.PolymerHeadBlock;
 import eu.pb4.polymer.core.api.item.PolymerBlockItem;
+import eu.pb4.polymer.core.api.item.PolymerCreativeModeTabUtils;
 import eu.pb4.polymer.core.api.item.PolymerHeadBlockItem;
-import eu.pb4.polymer.core.api.item.PolymerItemGroupUtils;
 import eu.pb4.polymer.core.api.item.SimplePolymerItem;
 import io.github.mumboteam.spooncraftadditions.SpooncraftAdditions;
 import io.github.mumboteam.spooncraftadditions.item.*;
@@ -119,7 +119,7 @@ public class ModItems {
     }
 
     public static void initialize() {
-        PolymerItemGroupUtils.registerPolymerItemGroup(Identifier.fromNamespaceAndPath(SpooncraftAdditions.ID, "items"), CreativeModeTab.builder(CreativeModeTab.Row.BOTTOM, -1)
+        PolymerCreativeModeTabUtils.registerPolymerCreativeModeTab(Identifier.fromNamespaceAndPath(SpooncraftAdditions.ID, "items"), CreativeModeTab.builder(CreativeModeTab.Row.BOTTOM, -1)
                 .icon(() -> {
                     ItemStack item = new ItemStack(Items.NETHERITE_SHOVEL);
                     item.set(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath(SpooncraftAdditions.ID, "spooncraft_spoon"));
@@ -161,7 +161,7 @@ public class ModItems {
                 })).build()
         );
 
-        PolymerItemGroupUtils.registerPolymerItemGroup(Identifier.fromNamespaceAndPath(SpooncraftAdditions.ID, "discs"), CreativeModeTab.builder(CreativeModeTab.Row.BOTTOM, -1)
+        PolymerCreativeModeTabUtils.registerPolymerCreativeModeTab(Identifier.fromNamespaceAndPath(SpooncraftAdditions.ID, "discs"), CreativeModeTab.builder(CreativeModeTab.Row.BOTTOM, -1)
                 .icon(() -> {
                     ItemStack item = new ItemStack(Items.PAPER);
                     item.set(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath(SpooncraftAdditions.ID, "music_disc_dibby_dibby_diamonds"));
@@ -191,7 +191,7 @@ public class ModItems {
                 })).build()
         );
 
-        PolymerItemGroupUtils.registerPolymerItemGroup(Identifier.fromNamespaceAndPath(SpooncraftAdditions.ID, "eggs"), CreativeModeTab.builder(CreativeModeTab.Row.BOTTOM, -1)
+        PolymerCreativeModeTabUtils.registerPolymerCreativeModeTab(Identifier.fromNamespaceAndPath(SpooncraftAdditions.ID, "eggs"), CreativeModeTab.builder(CreativeModeTab.Row.BOTTOM, -1)
                 .icon(() -> new ItemStack(ModItems.EGG_MUMBO))
                 .title(Component.translatable("itemGroup.spooncraftadditions.eggs"))
                 .displayItems(((context, entries) -> {

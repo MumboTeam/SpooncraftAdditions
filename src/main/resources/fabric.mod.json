@@ -28,8 +28,8 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.15.11",
-		"minecraft": "~1.21.4",
-		"java": ">=21",
+		"minecraft": ">=26.1-",
+		"java": ">=25",
 		"fabric-api": "*",
 		"polymer-core": ">=0.10.0",
 		"polymer-resource-pack": ">=0.10.0"

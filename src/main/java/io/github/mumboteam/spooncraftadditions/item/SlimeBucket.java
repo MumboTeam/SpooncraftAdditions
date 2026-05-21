@@ -3,6 +3,7 @@ package io.github.mumboteam.spooncraftadditions.item;
 import eu.pb4.polymer.core.api.item.PolymerItem;
 import io.github.mumboteam.spooncraftadditions.SpooncraftAdditions;
 import io.github.mumboteam.spooncraftadditions.component.ModComponents;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
@@ -27,7 +28,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
-import xyz.nucleoid.packettweaker.PacketContext;
+import net.fabricmc.fabric.api.networking.v1.context.PacketContext;
+import org.jspecify.annotations.NonNull;
 
 public class SlimeBucket extends Item implements PolymerItem {
     public SlimeBucket(Properties settings) {
@@ -40,7 +42,7 @@ public class SlimeBucket extends Item implements PolymerItem {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, ServerLevel world, Entity entity, @Nullable EquipmentSlot slot) {
+    public void inventoryTick(@NonNull ItemStack stack, @NonNull ServerLevel world, @NonNull Entity entity, @Nullable EquipmentSlot slot) {
         if (entity instanceof ServerPlayer player) {
             boolean excited = Boolean.TRUE.equals(stack.get(ModComponents.SLIME_EXCITED));
 
@@ -51,7 +53,7 @@ public class SlimeBucket extends Item implements PolymerItem {
     }
 
     @Override
-    public @Nullable Identifier getPolymerItemModel(ItemStack stack, PacketContext context) {
+    public @Nullable Identifier getPolymerItemModel(ItemStack stack, PacketContext context, HolderLookup.Provider lookup) {
         if (stack.getHoverName().getString().toLowerCase().contains("gareth")) {
             if (Boolean.TRUE.equals(stack.get(ModComponents.SLIME_EXCITED))) {
                 return Identifier.fromNamespaceAndPath(SpooncraftAdditions.ID, "gareth_bucket_jumping");
@@ -68,7 +70,7 @@ public class SlimeBucket extends Item implements PolymerItem {
     }
 
     @Override
-    public InteractionResult use(Level world, Player player, InteractionHand hand) {
+    public @NonNull InteractionResult use(@NonNull Level world, Player player, @NonNull InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         BlockHitResult blockHitResult = getPlayerPOVHitResult(world, player, ClipContext.Fluid.SOURCE_ONLY);
         Vec3 pos = blockHitResult.getLocation();
@@ -92,6 +94,6 @@ public class SlimeBucket extends Item implements PolymerItem {
 
     private boolean inSlimeChunk(ServerPlayer player) {
         ChunkPos chunkPos = player.chunkPosition();
-        return WorldgenRandom.seedSlimeChunk(chunkPos.x, chunkPos.z, player.level().getSeed(), 987234911L).nextInt(10) == 0;
+        return WorldgenRandom.seedSlimeChunk(chunkPos.x(), chunkPos.z(), player.level().getSeed(), 987234911L).nextInt(10) == 0;
     }
 }

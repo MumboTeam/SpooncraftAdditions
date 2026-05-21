@@ -9,6 +9,7 @@ import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -17,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Mob.class)
 public class SlimeMixin {
     @Inject(method = "interact", at = @At("HEAD"), cancellable = true)
-    public final void interact(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
+    public final void interact(Player player, InteractionHand hand, Vec3 location, CallbackInfoReturnable<InteractionResult> cir) {
         if (((Mob) (Object) this) instanceof Slime slime && slime.getSize() == 1) {
             ItemStack stack = player.getItemInHand(hand);
 

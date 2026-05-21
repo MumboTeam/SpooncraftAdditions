@@ -18,7 +18,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import xyz.nucleoid.packettweaker.PacketContext;
+import net.fabricmc.fabric.api.networking.v1.context.PacketContext;
+import org.jspecify.annotations.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,7 +91,7 @@ public class DuckEntity extends Boat implements PolymerEntity {
     }
 
     @Override
-    public Vec3 trackingPosition() {
+    public @NonNull Vec3 trackingPosition() {
         return super.trackingPosition().subtract(0, 1.5, 0);
     }
 }
