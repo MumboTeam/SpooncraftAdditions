@@ -68,6 +68,10 @@ public class ModItems {
     public static final Item NETHERITE_PIRATE_HAT = register("netherite_pirate_hat", (settings) -> new Hat(settings.fireResistant().rarity(Rarity.EPIC).durability(ArmorType.HELMET.getDurability(37)), "pirate_hat", ArmorMaterials.NETHERITE));
     public static final Item WREATH_HAT = register("wreath", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).durability(ArmorType.HELMET.getDurability(33)), "wreath", ArmorMaterials.DIAMOND));
     public static final Item NETHERITE_WREATH_HAT = register("netherite_wreath", (settings) -> new Hat(settings.fireResistant().rarity(Rarity.EPIC).durability(ArmorType.HELMET.getDurability(37)), "wreath", ArmorMaterials.NETHERITE));
+    public static final Item JESTER_HAT = register("jester_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).durability(ArmorType.HELMET.getDurability(33)), "jester_hat", ArmorMaterials.DIAMOND));
+    public static final Item NETHERITE_JESTER_HAT = register("netherite_jester_hat", (settings) -> new Hat(settings.fireResistant().rarity(Rarity.EPIC).durability(ArmorType.HELMET.getDurability(37)), "jester_hat", ArmorMaterials.NETHERITE));
+    public static final Item PUMPKIN_HAT = register("pumpkin_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON).durability(ArmorType.HELMET.getDurability(33)), "pumpkin_hat", ArmorMaterials.DIAMOND));
+    public static final Item NETHERITE_PUMPKIN_HAT = register("netherite_pumpkin_hat", (settings) -> new Hat(settings.fireResistant().rarity(Rarity.EPIC).durability(ArmorType.HELMET.getDurability(37)), "pumpkin_hat", ArmorMaterials.NETHERITE));
 
     public static final Item DRAGON_WINGS = register("dragon_wings", (settings -> new SimplePolymerItem(settings.durability(432).rarity(Rarity.EPIC).component(DataComponents.GLIDER, Unit.INSTANCE).component(DataComponents.EQUIPPABLE, Equippable.builder(EquipmentSlot.CHEST).setEquipSound(SoundEvents.ARMOR_EQUIP_ELYTRA).setAsset(ModEquipmentAssetKeys.DRAGON_WINGS).setDamageOnHurt(false).build()).repairable(Items.PHANTOM_MEMBRANE), Items.ELYTRA, true)));
     public static final Item KIRBY_WINGS = register("kirby_wings", (settings -> new SimplePolymerItem(settings.durability(432).rarity(Rarity.EPIC).component(DataComponents.GLIDER, Unit.INSTANCE).component(DataComponents.EQUIPPABLE, Equippable.builder(EquipmentSlot.CHEST).setEquipSound(SoundEvents.ARMOR_EQUIP_ELYTRA).setAsset(ModEquipmentAssetKeys.KIRBY_WINGS).setDamageOnHurt(false).build()).repairable(Items.PHANTOM_MEMBRANE), Items.ELYTRA, true)));
@@ -152,6 +156,8 @@ public class ModItems {
                     entries.accept(REDSTONE_HAT);
                     entries.accept(PIRATE_HAT);
                     entries.accept(WREATH_HAT);
+                    entries.accept(JESTER_HAT);
+                    entries.accept(PUMPKIN_HAT);
 
                     entries.accept(DRAGON_WINGS);
                     entries.accept(KIRBY_WINGS);
