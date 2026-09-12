@@ -11,14 +11,10 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
-import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.component.BlocksAttacks;
 import net.minecraft.world.item.component.DamageResistant;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.enchantment.Enchantable;
@@ -26,12 +22,9 @@ import net.minecraft.world.item.enchantment.Repairable;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorMaterials;
 import net.minecraft.world.item.equipment.ArmorType;
-import net.minecraft.world.item.equipment.Equippable;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
-import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 import static net.minecraft.world.item.equipment.ArmorMaterials.*;
@@ -132,7 +125,6 @@ public class SpooncraftAdditionsRecipeProvider extends FabricRecipeProvider {
                         cosmeticSmithing(hat, RecipeCategory.COMBAT, material, ArmorType.HELMET);
                     }
                 }
-                dragonShieldSmithing();
             }
 
             public void cosmeticSmithing(Item base, RecipeCategory category, ArmorMaterial material, ArmorType armorType) {
@@ -145,38 +137,6 @@ public class SpooncraftAdditionsRecipeProvider extends FabricRecipeProvider {
                         .unlocks(getHasName(base), has(base))
                         .unlocks(getHasName(armorItem), has(armorItem))
                         .save(this.output, getItemName(base) + "_" + material.assetId().identifier().getPath() + "_smithing");
-            }
-
-            public void dragonShieldSmithing() {
-                DataComponentPatch.Builder builder = DataComponentPatch.builder();
-                builder.set(DataComponents.DAMAGE, 0);
-                builder.set(DataComponents.MAX_DAMAGE, 336);
-                builder.set(DataComponents.EQUIPPABLE, Equippable.builder(EquipmentSlot.OFFHAND).build());
-                builder.set(DataComponents.CONSUMABLE, net.minecraft.world.item.component.Consumable.builder()
-                        .consumeSeconds(72000)
-                        .animation(ItemUseAnimation.BLOCK)
-                        .build());
-                builder.set(DataComponents.BLOCKS_ATTACKS, new BlocksAttacks(
-                        0.25F,
-                        1.0F,
-                        List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)),
-                        new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F),
-                        Optional.of(registries.lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(DamageTypeTags.BYPASSES_SHIELD)),
-                        Optional.of(SoundEvents.SHIELD_BLOCK),
-                        Optional.of(SoundEvents.SHIELD_BREAK)
-                ));
-
-                ItemStackTemplate result = new ItemStackTemplate(ModItems.DRAGON_SHIELD, builder.build());
-
-                new SmithingTransformRecipeBuilder(
-                        Ingredient.of(ModItems.COSMETIC_UPGRADE_SMITHING_TEMPLATE),
-                        Ingredient.of(ModItems.DRAGON_SHIELD),
-                        Ingredient.of(Items.SHIELD),
-                        RecipeCategory.COMBAT,
-                        result
-                )
-                        .unlocks(getHasName(ModItems.DRAGON_SHIELD), has(ModItems.DRAGON_SHIELD))
-                        .save(this.output, "dragon_shield_smithing");
             }
 
             public DataComponentPatch asComponents(ArmorMaterial material, ArmorType armorType) {
