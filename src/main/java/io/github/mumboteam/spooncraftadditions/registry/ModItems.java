@@ -55,6 +55,9 @@ public class ModItems {
     public static final Item WREATH_HAT = register("wreath", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON), "wreath"));
     public static final Item JESTER_HAT = register("jester_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON), "jester_hat"));
     public static final Item PUMPKIN_HAT = register("pumpkin_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON), "pumpkin_hat"));
+    public static final Item MUSHROOM_ADMIRAL_HAT = register("mushroom_admiral_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON), "mushroom_admiral_hat"));
+    public static final Item BERET = register("beret", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON), "beret"));
+    public static final Item CONE_HAT = register("cone_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON), "cone_hat"));
 
     public static final Item DRAGON_WINGS = register("dragon_wings", (settings -> new SimplePolymerItem(settings.durability(432).rarity(Rarity.EPIC).component(DataComponents.GLIDER, Unit.INSTANCE).component(DataComponents.EQUIPPABLE, Equippable.builder(EquipmentSlot.CHEST).setEquipSound(SoundEvents.ARMOR_EQUIP_ELYTRA).setAsset(ModEquipmentAssetKeys.DRAGON_WINGS).setDamageOnHurt(false).build()).repairable(Items.PHANTOM_MEMBRANE), Items.ELYTRA, true)));
     public static final Item KIRBY_WINGS = register("kirby_wings", (settings -> new SimplePolymerItem(settings.durability(432).rarity(Rarity.EPIC).component(DataComponents.GLIDER, Unit.INSTANCE).component(DataComponents.EQUIPPABLE, Equippable.builder(EquipmentSlot.CHEST).setEquipSound(SoundEvents.ARMOR_EQUIP_ELYTRA).setAsset(ModEquipmentAssetKeys.KIRBY_WINGS).setDamageOnHurt(false).build()).repairable(Items.PHANTOM_MEMBRANE), Items.ELYTRA, true)));
@@ -63,6 +66,9 @@ public class ModItems {
     public static final Item REDSTONE_STAFF = register("redstone_staff", settings -> new RedstoneStaff(settings.rarity(Rarity.UNCOMMON).sword(ToolMaterial.DIAMOND, 3.0F, -2.4F)));
     public static final Item NETHERITE_REDSTONE_STAFF = register("netherite_redstone_staff", settings -> new RedstoneStaff(settings.rarity(Rarity.EPIC).sword(ToolMaterial.NETHERITE, 3.0F, -2.4F).overrideDescription("item.spooncraftadditions.redstone_staff")));
     public static final Item TETRIO_STICK = register("tetrio_stick", TetrioStick::new);
+    public static final Item HOBBY_HORSE = register("hobby_horse", HobbyHorse::new);
+
+    public static final Item DRAGON_SHIELD = register("dragon_shield", DragonShield::new);
 
     public static final Item EGG_BASKET = register("egg_basket", EggBasket::new);
     public static final Item EGG_MUMBO = register("eggmumbo", (settings -> new PolymerBlockItem(ModBlocks.EGG_MUMBO, settings.overrideDescription("item.spooncraftadditions.egg").stacksTo(64))));
@@ -78,6 +84,9 @@ public class ModItems {
     public static final Item EGG31 = register("egg31", (settings -> new PolymerBlockItem(ModBlocks.EGG31, settings.overrideDescription("item.spooncraftadditions.egg").stacksTo(64))));
     public static final Item EGG32 = register("egg32", (settings -> new PolymerBlockItem(ModBlocks.EGG32, settings.overrideDescription("item.spooncraftadditions.egg").stacksTo(64))));
     public static final Item EGG33 = register("egg33", (settings -> new PolymerBlockItem(ModBlocks.EGG33, settings.overrideDescription("item.spooncraftadditions.egg").stacksTo(64))));
+
+    public static final Item DIORAMA_S5_FINAL = register("spawn_diorama", (settings -> new PlaceableCosmetic(ModBlocks.SPAWN_DIORAMA, settings.rarity(Rarity.UNCOMMON).overrideDescription("item.spooncraftadditions.spawn_diorama").stacksTo(1), "item.spooncraftadditions.spawn_diorama.desc")));
+    public static final Item TAG_WINNER_S6 = register("running_statue", (settings -> new PlaceableCosmetic(ModBlocks.RUNNING_STATUE, settings.rarity(Rarity.UNCOMMON).overrideDescription("item.spooncraftadditions.running_statue").stacksTo(1), "item.spooncraftadditions.running_statue.desc")));
 
     public static final Item MUSIC_DISC_CACTUS_STRING_SAND = register("music_disc_cactus_string_sand", (settings) -> new MusicDisc(settings, "cactus_string_sand", ModJukeboxSongs.CACTUS_STRING_SAND));
     public static final Item MUSIC_DISC_CORRIDOR = register("music_disc_corridor", (settings) -> new MusicDisc(settings, "corridor", ModJukeboxSongs.CORRIDOR));
@@ -143,12 +152,21 @@ public class ModItems {
                     entries.accept(WREATH_HAT);
                     entries.accept(JESTER_HAT);
                     entries.accept(PUMPKIN_HAT);
+                    entries.accept(MUSHROOM_ADMIRAL_HAT);
+                    entries.accept(BERET);
+                    entries.accept(CONE_HAT);
 
                     entries.accept(DRAGON_WINGS);
                     entries.accept(KIRBY_WINGS);
 
                     entries.accept(REDSTONE_STAFF);
                     entries.accept(TETRIO_STICK);
+                    entries.accept(HOBBY_HORSE);
+
+                    entries.accept(DRAGON_SHIELD);
+
+                    entries.accept(DIORAMA_S5_FINAL);
+                    entries.accept(TAG_WINNER_S6);
                 })).build()
         );
 

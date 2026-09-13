@@ -1,8 +1,10 @@
 package io.github.mumboteam.spooncraftadditions.registry;
 
 import io.github.mumboteam.spooncraftadditions.SpooncraftAdditions;
+import io.github.mumboteam.spooncraftadditions.block.DioramaBlock;
 import io.github.mumboteam.spooncraftadditions.block.EggBlock;
 import io.github.mumboteam.spooncraftadditions.block.GiftBoxBlock;
+import io.github.mumboteam.spooncraftadditions.block.TagStatueBlock;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -29,6 +31,9 @@ public class ModBlocks {
     public static final Block EGG31 = register("egg31", EggBlock::new);
     public static final Block EGG32 = register("egg32", EggBlock::new);
     public static final Block EGG33 = register("egg33", EggBlock::new);
+
+    public static final Block SPAWN_DIORAMA = register("spawn_diorama", DioramaBlock::new);
+    public static final Block RUNNING_STATUE = register("running_statue", TagStatueBlock::new);
 
     public static Block register(String path, Function<BlockBehaviour.Properties, Block> function) {
         Identifier id = Identifier.fromNamespaceAndPath(SpooncraftAdditions.ID, path);

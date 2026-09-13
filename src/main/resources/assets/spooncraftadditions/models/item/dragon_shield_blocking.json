@@ -1,0 +1,23 @@
+{
+	"parent": "spooncraftadditions:item/dragon_shield",
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [41.06, -26.25, 0.47],
+			"translation": [1.75, -7.5, -7.25]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [41.06, -26.25, 0.47],
+			"translation": [1.75, -7.5, -7.25]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 0, 10],
+			"translation": [-4.75, -12, 0],
+			"scale": [0.81, 0.81, 0.81]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 0, 10],
+			"translation": [-4.75, -12, 0],
+			"scale": [0.81, 0.81, 0.81]
+		}
+	}
+}
