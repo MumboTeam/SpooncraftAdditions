@@ -1,8 +1,11 @@
 package io.github.mumboteam.spooncraftadditions.datagen;
 
+import io.github.mumboteam.spooncraftadditions.item.DuckHat;
+import io.github.mumboteam.spooncraftadditions.item.Hat;
 import io.github.mumboteam.spooncraftadditions.registry.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
@@ -39,25 +42,7 @@ public class SpooncraftAdditionsRecipeProvider extends FabricRecipeProvider {
             NETHERITE
     };
 
-    private static final Item[] HATS = new Item[]{
-        ModItems.SKYBLOCK_HAT,
-        ModItems.BALTOP_HAT,
-        ModItems.ARROW_HAT,
-        ModItems.SKYBLOCK_STARTER_BASE_HAT,
-        ModItems.DEEP_VOID_SANCTUARY_HAT,
-        ModItems.DUCK_HAT,
-        ModItems.S5_SPAWN_HAT,
-        ModItems.WINDMILL_HOUSE_HAT,
-        ModItems.TAG_FIRST,
-        ModItems.TAG_SECOND,
-        ModItems.TAG_THIRD,
-        ModItems.TAG_PARTICIPATION,
-        ModItems.REDSTONE_HAT,
-        ModItems.PIRATE_HAT,
-        ModItems.WREATH_HAT,
-        ModItems.JESTER_HAT,
-        ModItems.PUMPKIN_HAT
-    };
+
 
     public static @Nullable Item getVanillaArmorItem(ArmorMaterial material, ArmorType type) {
         String name = material.assetId().identifier().getPath();
@@ -120,11 +105,14 @@ public class SpooncraftAdditionsRecipeProvider extends FabricRecipeProvider {
             public void buildRecipes() {
                 HolderLookup.RegistryLookup<Item> itemLookup = registries.lookupOrThrow(Registries.ITEM);
 
-                for (Item hat : HATS) {
-                    for (ArmorMaterial material : ARMOR_MATERIALS) {
-                        cosmeticSmithing(hat, RecipeCategory.COMBAT, material, ArmorType.HELMET);
-                    }
-                }
+                itemLookup.listElements()
+                        .map(Holder::value)
+                        .filter(item -> item instanceof Hat || item instanceof DuckHat)
+                        .forEach(hat -> {
+                            for (ArmorMaterial material : ARMOR_MATERIALS) {
+                                cosmeticSmithing(hat, RecipeCategory.COMBAT, material, ArmorType.HELMET);
+                            }
+                        });
             }
 
             public void cosmeticSmithing(Item base, RecipeCategory category, ArmorMaterial material, ArmorType armorType) {
