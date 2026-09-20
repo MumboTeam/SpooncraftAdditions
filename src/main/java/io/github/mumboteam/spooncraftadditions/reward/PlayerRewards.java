@@ -37,10 +37,13 @@ public class PlayerRewards {
         return Rewards.get();
     }
 
-    public void claimReward(Reward reward) {
-        this.player.addItem(reward.stack().create());
-        this.claimedRewards.rewards.add(Rewards.getIdentifier(reward));
-
-        PlayerDataApi.setCustomDataFor(this.player, Rewards.CLAIMED_REWARDS_STORAGE, this.claimedRewards);
+    public boolean claimReward(Reward reward) {
+        boolean awarded = this.player.addItem(reward.stack().create());
+        if (awarded) {
+            this.claimedRewards.rewards.add(Rewards.getIdentifier(reward));
+            PlayerDataApi.setCustomDataFor(this.player, Rewards.CLAIMED_REWARDS_STORAGE, this.claimedRewards);
+            return true;
+        }
+        return false;
     }
 }
