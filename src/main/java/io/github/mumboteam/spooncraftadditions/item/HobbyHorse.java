@@ -32,35 +32,40 @@ public class HobbyHorse extends Item implements PolymerItem {
     }
 
 
-
     @Override
     public @NonNull InteractionResult use(@NonNull Level level, Player player, @NonNull InteractionHand usedHand) {
         ItemStack stack = player.getItemInHand(usedHand);
         if (level instanceof ServerLevel serverLevel) {
-            Vec3 lookAngle = player.getLookAngle();
-            double lungeStrength = 3 * 0.458;
+            if (!(player.getFallFlyingTicks() > 0)) {
+                Vec3 lookAngle = player.getLookAngle();
+                double lungeStrength = 3 * 0.458;
 
-            player.setDeltaMovement(player.getDeltaMovement().add(
-                    lookAngle.x * lungeStrength,
-                    0,
-                    lookAngle.z * lungeStrength
-            ));
-            player.hurtMarked = true;
+                player.setDeltaMovement(player.getDeltaMovement().add(
+                        lookAngle.x * lungeStrength,
+                        0,
+                        lookAngle.z * lungeStrength
+                ));
+                player.hurtMarked = true;
 
-            serverLevel.playSound(
-                    null,
-                    player.getX(), player.getY(), player.getZ(),
-                    SoundEvents.HORSE_GALLOP,
-                    SoundSource.PLAYERS,
-                    1.0F,
-                    1.0F
-            );
+                serverLevel.playSound(
+                        null,
+                        player.getX(), player.getY(), player.getZ(),
+                        SoundEvents.HORSE_GALLOP,
+                        SoundSource.PLAYERS,
+                        1.0F,
+                        1.0F
+                );
 
-            if (!player.isCreative() && !player.isSpectator()) {
-                player.causeFoodExhaustion(12.0F);
+                if (!player.isCreative() && !player.isSpectator()) {
+                    player.causeFoodExhaustion(12.0F);
+                }
+
+                stack.hurtAndBreak(1, player, player.getUsedItemHand());
+
+                player.getCooldowns().addCooldown(stack, 20);
+                return InteractionResult.SUCCESS;
             }
-
-            stack.hurtAndBreak(1, player, player.getUsedItemHand());
+            return InteractionResult.FAIL;
         }
 
         player.getCooldowns().addCooldown(stack, 20);
