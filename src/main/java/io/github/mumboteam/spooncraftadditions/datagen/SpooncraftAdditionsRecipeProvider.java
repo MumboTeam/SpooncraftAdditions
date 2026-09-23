@@ -117,16 +117,16 @@ public class SpooncraftAdditionsRecipeProvider extends FabricRecipeProvider {
                         });
             }
 
-            public void cosmeticSmithing(Item base, RecipeCategory category, ArmorMaterial material, ArmorType armorType) {
-                ItemStackTemplate result = new ItemStackTemplate(base, asComponents(material, armorType));
+            public void cosmeticSmithing(Item cosmetic, RecipeCategory category, ArmorMaterial material, ArmorType armorType) {
+                ItemStackTemplate result = new ItemStackTemplate(cosmetic, asComponents(material, armorType));
                 Item armorItem = getVanillaArmorItem(material, armorType);
 
                 new SmithingTransformRecipeBuilder(
-                                Ingredient.of(ModItems.COSMETIC_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(base), Ingredient.of(armorItem), category, result
+                                Ingredient.of(ModItems.COSMETIC_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(armorItem), Ingredient.of(cosmetic), category, result
                         )
-                        .unlocks(getHasName(base), has(base))
+                        .unlocks(getHasName(cosmetic), has(cosmetic))
                         .unlocks(getHasName(armorItem), has(armorItem))
-                        .save(this.output, getItemName(base) + "_" + material.assetId().identifier().getPath() + "_smithing");
+                        .save(this.output, getItemName(cosmetic) + "_" + material.assetId().identifier().getPath() + "_smithing");
             }
 
             public DataComponentPatch asComponents(ArmorMaterial material, ArmorType armorType) {

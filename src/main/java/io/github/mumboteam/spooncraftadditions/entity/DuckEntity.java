@@ -4,37 +4,40 @@ import com.mojang.datafixers.util.Pair;
 import eu.pb4.polymer.core.api.entity.PolymerEntity;
 import io.github.mumboteam.spooncraftadditions.SpooncraftAdditions;
 import io.github.mumboteam.spooncraftadditions.mixin.AbstractBoatAccessor;
+import io.github.mumboteam.spooncraftadditions.registry.ModItems;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EntityTypes;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.vehicle.boat.Boat;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import net.fabricmc.fabric.api.networking.v1.context.PacketContext;
 import org.jspecify.annotations.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 
 public class DuckEntity extends Boat implements PolymerEntity {
     ItemStack itemStack;
+    ItemStack hatItem;
     int quackCooldown = 0;
 
-    public DuckEntity(EntityType<? extends DuckEntity> entityType, Level world, Supplier<Item> itemSupplier) {
-        super(entityType, world, itemSupplier);
+    public DuckEntity(EntityType<? extends DuckEntity> entityType, Level world) {
+        super(entityType, world, () -> Items.AIR);
         this.setInvisible(true);
         this.itemStack = Items.PAPER.getDefaultInstance();
         this.itemStack.set(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath(SpooncraftAdditions.ID, "duck"));
+        this.hatItem = ModItems.DUCK_HAT.getDefaultInstance();
     }
 
     @Override
@@ -85,6 +88,18 @@ public class DuckEntity extends Boat implements PolymerEntity {
         }
     }
 
+    @Override
+    protected void addAdditionalSaveData(ValueOutput output) {
+        super.addAdditionalSaveData(output);
+        output.store("hat_item", ItemStack.CODEC, this.hatItem);
+    }
+
+    @Override
+    protected void readAdditionalSaveData(ValueInput input) {
+        super.readAdditionalSaveData(input);
+        this.hatItem = input.read("hat_item", ItemStack.CODEC).orElse(ModItems.DUCK_HAT.getDefaultInstance());
+    }
+
 
     @Override
     public float getYHeadRot() {
@@ -94,5 +109,15 @@ public class DuckEntity extends Boat implements PolymerEntity {
     @Override
     public @NonNull Vec3 trackingPosition() {
         return super.trackingPosition().subtract(0, 1.5, 0);
+    }
+
+    @Override
+    protected void destroy(ServerLevel level, DamageSource source) {
+        super.destroy(level, source);
+        Block.popResource(this.level(), this.blockPosition(), this.hatItem);
+    }
+
+    public void setHatItem(ItemStack itemStack) {
+        this.hatItem = itemStack;
     }
 }
