@@ -45,7 +45,7 @@ public class HobbyHorse extends Item implements PolymerItem {
                         0,
                         lookAngle.z * lungeStrength
                 ));
-                player.hurtMarked = true;
+                player.syncVelocity = true;
 
                 serverLevel.playSound(
                         null,

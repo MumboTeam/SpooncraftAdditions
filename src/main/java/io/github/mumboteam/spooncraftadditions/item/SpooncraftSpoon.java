@@ -16,9 +16,9 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 
-public class SpooncraftSpoon extends ShovelItem implements PolymerItem {
+public class SpooncraftSpoon extends Item implements PolymerItem {
     public SpooncraftSpoon(Properties settings) {
-        super(SpooncraftMaterial.MATERIAL, 1.5F, -3.0F, settings.fireResistant().rarity(Rarity.EPIC));
+        super(settings.shovel(SpooncraftMaterial.MATERIAL, 1.5F, -3.0F).fireResistant().rarity(Rarity.EPIC));
     }
 
     public static boolean isUsable(ItemStack stack) {

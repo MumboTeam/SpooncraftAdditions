@@ -9,6 +9,7 @@ import net.minecraft.world.entity.monster.cubemob.Slime;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.SwingAnimation;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -22,7 +23,7 @@ public class SlimeMixin {
         if (((Mob) (Object) this) instanceof Slime slime && slime.getSize() == 1) {
             ItemStack stack = player.getItemInHand(hand);
 
-            if (stack.getItem() == Items.BUCKET && !player.swinging) {
+            if (stack.getItem() == Items.BUCKET && !player.isSwinging()) {
                 slime.discard();
                 ItemStack slimeBucket = new ItemStack(ModItems.SLIME_BUCKET);
                 if (slime.hasCustomName()) {
@@ -34,7 +35,7 @@ public class SlimeMixin {
                     stack.shrink(1);
                     player.addItem(slimeBucket);
                 }
-                player.swing(hand, true);
+                player.swing(hand, SwingAnimation.DEFAULT, true);
                 cir.setReturnValue(InteractionResult.PASS);
             }
         }

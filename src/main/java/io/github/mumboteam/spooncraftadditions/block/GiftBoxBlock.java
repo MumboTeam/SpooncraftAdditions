@@ -1,6 +1,5 @@
 package io.github.mumboteam.spooncraftadditions.block;
 
-import com.mojang.serialization.MapCodec;
 import eu.pb4.polymer.core.api.block.PolymerHeadBlock;
 import io.github.mumboteam.spooncraftadditions.block.entity.GiftBoxBlockEntity;
 import io.github.mumboteam.spooncraftadditions.gui.GiftBoxGui;
@@ -31,11 +30,6 @@ import org.jspecify.annotations.NonNull;
 public class GiftBoxBlock extends BaseEntityBlock implements PolymerHeadBlock {
     public GiftBoxBlock(Properties settings) {
         super(settings);
-    }
-
-    @Override
-    protected @NonNull MapCodec<? extends BaseEntityBlock> codec() {
-        return simpleCodec(GiftBoxBlock::new);
     }
 
     @Override

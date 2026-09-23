@@ -72,7 +72,7 @@ public class SlimeBucket extends Item implements PolymerItem {
         BlockHitResult blockHitResult = getPlayerPOVHitResult(world, player, ClipContext.Fluid.SOURCE_ONLY);
         Vec3 pos = blockHitResult.getLocation();
 
-        if ((blockHitResult.getType() != HitResult.Type.BLOCK || !player.mayUseItemAt(blockHitResult.getBlockPos(), blockHitResult.getDirection(), stack) || player.swinging)) {
+        if ((blockHitResult.getType() != HitResult.Type.BLOCK || !player.mayUseItemAt(blockHitResult.getBlockPos(), blockHitResult.getDirection(), stack) || player.isSwinging())) {
             return InteractionResult.PASS;
         } else {
             Slime slime = EntityTypes.SLIME.create(world, EntitySpawnReason.BUCKET);
