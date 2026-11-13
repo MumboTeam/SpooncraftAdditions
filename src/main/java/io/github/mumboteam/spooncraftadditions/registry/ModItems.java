@@ -58,6 +58,7 @@ public class ModItems {
     public static final Item MUSHROOM_ADMIRAL_HAT = register("mushroom_admiral_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON), "mushroom_admiral_hat"));
     public static final Item BERET = register("beret", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON), "beret"));
     public static final Item CONE_HAT = register("cone_hat", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON), "cone_hat"));
+    public static final Item KNIGHT_CROWN = register("knight_crown", (settings) -> new Hat(settings.rarity(Rarity.UNCOMMON), "knight_crown"));
 
     public static final Item DRAGON_WINGS = register("dragon_wings", (settings -> new SimplePolymerItem(settings.durability(432).rarity(Rarity.EPIC).component(DataComponents.GLIDER, Unit.INSTANCE).component(DataComponents.EQUIPPABLE, Equippable.builder(EquipmentSlot.CHEST).setEquipSound(SoundEvents.ARMOR_EQUIP_ELYTRA).setAsset(ModEquipmentAssetKeys.DRAGON_WINGS).setDamageOnHurt(false).build()).repairable(Items.PHANTOM_MEMBRANE), Items.ELYTRA, true)));
     public static final Item KIRBY_WINGS = register("kirby_wings", (settings -> new SimplePolymerItem(settings.durability(432).rarity(Rarity.EPIC).component(DataComponents.GLIDER, Unit.INSTANCE).component(DataComponents.EQUIPPABLE, Equippable.builder(EquipmentSlot.CHEST).setEquipSound(SoundEvents.ARMOR_EQUIP_ELYTRA).setAsset(ModEquipmentAssetKeys.KIRBY_WINGS).setDamageOnHurt(false).build()).repairable(Items.PHANTOM_MEMBRANE), Items.ELYTRA, true)));
@@ -155,6 +156,7 @@ public class ModItems {
                     entries.accept(MUSHROOM_ADMIRAL_HAT);
                     entries.accept(BERET);
                     entries.accept(CONE_HAT);
+                    entries.accept(KNIGHT_CROWN);
 
                     entries.accept(DRAGON_WINGS);
                     entries.accept(KIRBY_WINGS);
